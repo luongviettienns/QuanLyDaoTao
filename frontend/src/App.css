@@ -1,14 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Prata&display=swap');
+
+:root {
+  --bg: #eef2fb;
+  --ink: #17213d;
+  --muted: #4e5a7a;
+  --line: #d7e0f5;
+  --panel: rgba(255, 255, 255, 0.84);
+  --card: #ffffff;
+  --primary: #1f4fd6;
+  --primary-deep: #173eab;
+  --glow: rgba(31, 79, 214, 0.16);
+}
+
 #root {
   min-height: 100vh;
-}
-
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 3rem 1.25rem;
-  text-align: center;
-}
-
-h1 {
-  margin-bottom: 1rem;
 }

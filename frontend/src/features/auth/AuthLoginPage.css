@@ -1,0 +1,19 @@
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 1.75rem;
+  padding: 1.5rem;
+  background:
+    radial-gradient(circle at 14% 10%, #dce8ff 0%, transparent 35%),
+    radial-gradient(circle at 86% 85%, #d8e4ff 0%, transparent 33%),
+    linear-gradient(145deg, #f6f9ff 0%, var(--bg) 100%);
+  color: var(--ink);
+}
+
+@media (max-width: 980px) {
+  .login-page {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+}

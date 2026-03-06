@@ -1,0 +1,14 @@
+#root {
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 1.25rem;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 1rem;
+}

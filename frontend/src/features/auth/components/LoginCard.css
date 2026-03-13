@@ -102,6 +102,20 @@
   transform: translateY(0);
 }
 
+.login-form button:disabled {
+  cursor: not-allowed;
+  opacity: 0.72;
+  transform: none;
+  box-shadow: 0 8px 14px rgba(31, 79, 214, 0.2);
+}
+
+.form-error {
+  margin: 0.1rem 0 0;
+  color: #b42318;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
 @media (max-width: 980px) {
   .login-card {
     padding: 1.5rem 1.2rem;

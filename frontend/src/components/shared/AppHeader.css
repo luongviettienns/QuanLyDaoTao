@@ -1,0 +1,75 @@
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem 1.4rem;
+  border-radius: 16px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+}
+
+.app-header h1 {
+  margin: 0.2rem 0 0;
+  font-size: 1.25rem;
+  font-family: 'Prata', serif;
+  color: var(--ink);
+}
+
+.app-header-eyebrow {
+  margin: 0;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #6273a3;
+  font-weight: 700;
+}
+
+.app-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.app-header-user {
+  margin: 0;
+  display: grid;
+  justify-items: end;
+  color: #394a76;
+  font-size: 0.84rem;
+}
+
+.app-header-user strong {
+  font-size: 0.92rem;
+  color: #223561;
+}
+
+.app-header-actions button {
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(100deg, var(--primary) 0%, #2c63eb 100%);
+  color: #fff;
+  padding: 0.62rem 0.9rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.app-header-actions button:hover {
+  background: linear-gradient(100deg, var(--primary-deep) 0%, #214fc4 100%);
+}
+
+@media (max-width: 760px) {
+  .app-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .app-header-actions {
+    justify-content: space-between;
+  }
+
+  .app-header-user {
+    justify-items: start;
+  }
+}

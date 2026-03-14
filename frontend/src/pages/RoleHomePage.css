@@ -7,22 +7,67 @@
     linear-gradient(145deg, #f6f9ff 0%, var(--bg) 100%);
 }
 
-.role-home-shell {
-  max-width: 1080px;
+.dashboard-shell {
+  max-width: 1440px;
   margin: 0 auto;
   display: grid;
+  grid-template-columns: 292px minmax(0, 1fr);
   gap: 1rem;
+  align-items: start;
+  transition: grid-template-columns 0.28s ease;
 }
 
-.role-home-card {
-  border-radius: 20px;
-  padding: 1.5rem;
-  background: var(--card);
+.dashboard-shell.sidebar-collapsed {
+  grid-template-columns: 112px minmax(0, 1fr);
+}
+
+.dashboard-main {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.dashboard-surface {
+  border-radius: 24px;
   border: 1px solid #d8e1f7;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
   box-shadow: 0 18px 34px rgba(25, 52, 126, 0.1), 0 3px 10px rgba(26, 52, 120, 0.06);
 }
 
-.role-home-eyebrow {
+.dashboard-card {
+  padding: 1.4rem;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+  gap: 1rem;
+}
+
+.dashboard-grid > * {
+  min-width: 0;
+}
+
+.dashboard-summary {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.dashboard-summary-title {
+  margin: 0;
+  font-family: 'Prata', serif;
+  color: var(--ink);
+  font-size: clamp(1.5rem, 2vw, 2rem);
+}
+
+.dashboard-summary-text {
+  margin: 0;
+  color: #4a5d8d;
+  line-height: 1.7;
+}
+
+.dashboard-eyebrow {
   margin: 0;
   font-size: 0.75rem;
   text-transform: uppercase;
@@ -31,14 +76,112 @@
   font-weight: 700;
 }
 
-.role-home-card h2 {
-  margin: 0.45rem 0 0.7rem;
-  font-size: 1.5rem;
-  font-family: 'Prata', serif;
-  color: var(--ink);
+@media (max-width: 1100px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
-.role-home-card p {
-  margin: 0;
-  color: #455685;
+@media (max-width: 920px) {
+  .role-home-page {
+    padding: 1rem;
+  }
+
+  .dashboard-shell,
+  .dashboard-shell.sidebar-collapsed {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
+
+  .dashboard-main {
+    gap: 0.9rem;
+  }
+
+  .dashboard-card {
+    padding: 1.18rem;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .role-home-page {
+    padding: 0.85rem;
+  }
+
+  .dashboard-shell,
+  .dashboard-shell.sidebar-collapsed {
+    gap: 0.72rem;
+  }
+
+  .dashboard-shell.is-mobile-shell {
+    align-items: stretch;
+  }
+
+  .dashboard-main {
+    gap: 0.8rem;
+  }
+
+  .dashboard-card {
+    padding: 1rem;
+  }
+
+  .dashboard-summary {
+    gap: 0.55rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .role-home-page {
+    padding: 0.72rem;
+  }
+
+  .dashboard-shell,
+  .dashboard-shell.sidebar-collapsed {
+    gap: 0.65rem;
+  }
+
+  .dashboard-main {
+    gap: 0.75rem;
+  }
+
+  .dashboard-card {
+    padding: 0.92rem;
+  }
+
+  .dashboard-summary-title {
+    font-size: clamp(1.35rem, 6vw, 1.7rem);
+    line-height: 1.25;
+  }
+
+  .dashboard-summary-text {
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 390px) {
+  .role-home-page {
+    padding: 0.6rem;
+  }
+
+  .dashboard-shell,
+  .dashboard-shell.sidebar-collapsed {
+    gap: 0.58rem;
+  }
+
+  .dashboard-main {
+    gap: 0.68rem;
+  }
+
+  .dashboard-card {
+    padding: 0.85rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-shell {
+    transition: none;
+  }
 }

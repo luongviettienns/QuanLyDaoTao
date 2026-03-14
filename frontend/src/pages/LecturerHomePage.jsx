@@ -3,8 +3,9 @@ import RoleHomePage from './RoleHomePage'
 function LecturerHomePage() {
   return (
     <RoleHomePage
+      role="lecturer"
       title="Trang giảng viên"
-      summary="Quản lý lớp học phần, theo dõi tiến độ giảng dạy và cập nhật kết quả học tập."
+      summary="Theo dõi lịch giảng dạy, lớp học phần phụ trách, các đầu việc cần nhập điểm - điểm danh và yêu cầu học vụ từ sinh viên."
     />
   )
 }

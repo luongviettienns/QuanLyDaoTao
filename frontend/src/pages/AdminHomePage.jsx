@@ -3,8 +3,9 @@ import RoleHomePage from './RoleHomePage'
 function AdminHomePage() {
   return (
     <RoleHomePage
-      title="Trang quản trị Nhà trường"
-      summary="Theo dõi vận hành học vụ, quản lý cấu hình hệ thống và giám sát dữ liệu toàn cục."
+      role="admin"
+      title="Trang quản trị đào tạo"
+      summary="Theo dõi đợt đăng ký học phần, tình trạng lớp học phần, tiến độ nhập điểm và các yêu cầu học vụ cần xử lý trong ngày."
     />
   )
 }

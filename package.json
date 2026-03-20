@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/luongviettienns/QuanLyDaoTao/issues"
   },
-  "homepage": "https://github.com/luongviettienns/QuanLyDaoTao#readme"
+  "homepage": "https://github.com/luongviettienns/QuanLyDaoTao#readme",
+  "devDependencies": {
+    "shadcn": "^4.1.0"
+  }
 }

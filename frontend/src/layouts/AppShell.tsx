@@ -1,4 +1,18 @@
-import { BellRing, BookOpenCheck, GraduationCap, LayoutDashboard, LogOut, Settings2, ShieldCheck, UserRound } from 'lucide-react'
+import {
+  BellRing,
+  BookOpenCheck,
+  CalendarClock,
+  ClipboardList,
+  FolderKanban,
+  GraduationCap,
+  LayoutDashboard,
+  LibraryBig,
+  LogOut,
+  Settings2,
+  ShieldCheck,
+  UserRound,
+  Users,
+} from 'lucide-react'
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { useAuth } from '@/app/auth/auth-context'
 import { appConfig } from '@/config/env'
@@ -17,26 +31,74 @@ type NavigationItem = {
   icon: typeof LayoutDashboard
 }
 
-const navigationByRole: Record<AppRole, NavigationItem[]> = {
+type NavigationSection = {
+  title: string
+  items: NavigationItem[]
+}
+
+const navigationByRole: Record<AppRole, NavigationSection[]> = {
   admin: [
-    { to: '/app/dashboard', label: 'Tổng quan', icon: LayoutDashboard },
-    { to: '/app/admin', label: 'Điều hành học vụ', icon: ShieldCheck },
-    { to: '/app/lecturer', label: 'Giảng viên', icon: GraduationCap },
-    { to: '/app/student', label: 'Sinh viên', icon: BookOpenCheck },
+    {
+      title: 'Điều hành',
+      items: [
+        { to: '/app/dashboard', label: 'Tổng quan', icon: LayoutDashboard },
+        { to: '/app/admin', label: 'Điều hành học vụ', icon: ShieldCheck },
+      ],
+    },
+    {
+      title: 'Danh mục đào tạo',
+      items: [
+        { to: '/app/admin/subjects', label: 'Môn học', icon: LibraryBig },
+        { to: '/app/admin/homeroom-classes', label: 'Lớp hành chính', icon: Users },
+        { to: '/app/admin/academic-data', label: 'Dữ liệu học vụ', icon: FolderKanban },
+      ],
+    },
+    {
+      title: 'Tổ chức giảng dạy',
+      items: [{ to: '/app/admin/course-sections', label: 'Lớp học phần', icon: GraduationCap }],
+    },
+    {
+      title: 'Đăng ký học phần',
+      items: [
+        { to: '/app/admin/registration-periods', label: 'Đợt đăng ký', icon: CalendarClock },
+        { to: '/app/admin/course-registrations', label: 'Đăng ký học phần', icon: ClipboardList },
+      ],
+    },
   ],
   lecturer: [
-    { to: '/app/dashboard', label: 'Tổng quan', icon: LayoutDashboard },
-    { to: '/app/lecturer', label: 'Lớp phụ trách', icon: GraduationCap },
-    { to: '/app/student', label: 'Sinh viên', icon: BookOpenCheck },
+    {
+      title: 'Giảng dạy',
+      items: [
+        { to: '/app/dashboard', label: 'Tổng quan', icon: LayoutDashboard },
+        { to: '/app/lecturer', label: 'Lớp phụ trách', icon: GraduationCap },
+      ],
+    },
+    {
+      title: 'Phối hợp',
+      items: [{ to: '/app/student', label: 'Sinh viên', icon: BookOpenCheck }],
+    },
   ],
   advisor: [
-    { to: '/app/dashboard', label: 'Tổng quan', icon: LayoutDashboard },
-    { to: '/app/lecturer', label: 'Công việc cố vấn', icon: GraduationCap },
-    { to: '/app/student', label: 'Sinh viên', icon: BookOpenCheck },
+    {
+      title: 'Cố vấn',
+      items: [
+        { to: '/app/dashboard', label: 'Tổng quan', icon: LayoutDashboard },
+        { to: '/app/lecturer', label: 'Công việc cố vấn', icon: GraduationCap },
+      ],
+    },
+    {
+      title: 'Phối hợp',
+      items: [{ to: '/app/student', label: 'Sinh viên', icon: BookOpenCheck }],
+    },
   ],
   student: [
-    { to: '/app/dashboard', label: 'Tổng quan', icon: LayoutDashboard },
-    { to: '/app/student', label: 'Học tập cá nhân', icon: BookOpenCheck },
+    {
+      title: 'Học tập cá nhân',
+      items: [
+        { to: '/app/dashboard', label: 'Tổng quan', icon: LayoutDashboard },
+        { to: '/app/student', label: 'Học tập cá nhân', icon: BookOpenCheck },
+      ],
+    },
   ],
 }
 
@@ -44,7 +106,7 @@ const shellLabels: Record<AppRole, { eyebrow: string; title: string; note: strin
   admin: {
     eyebrow: 'Khu vực quản trị',
     title: 'Điều hành đào tạo theo thời gian thực',
-    note: 'Theo dõi lớp học, điểm danh và các cảnh báo cần xử lý trong ngày.',
+    note: 'Theo dõi danh mục đào tạo, lớp học phần, đợt đăng ký và các cảnh báo học vụ trong phiên làm việc hiện tại.',
   },
   lecturer: {
     eyebrow: 'Khu vực giảng viên',
@@ -76,7 +138,7 @@ export function AppShell() {
     return null
   }
 
-  const navigationItems = navigationByRole[role]
+  const navigationSections = navigationByRole[role]
   const shellCopy = shellLabels[role]
 
   return (
@@ -106,28 +168,35 @@ export function AppShell() {
           </div>
         </div>
 
-        <nav className="mt-8 flex flex-1 flex-col gap-2">
-          {navigationItems.map((item) => {
-            const Icon = item.icon
+        <nav className="mt-8 flex flex-1 flex-col gap-6 overflow-y-auto pr-1">
+          {navigationSections.map((section) => (
+            <div key={section.title} className="flex flex-col gap-2">
+              <p className="px-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-muted-foreground">{section.title}</p>
+              <div className="flex flex-col gap-2">
+                {section.items.map((item) => {
+                  const Icon = item.icon
 
-            return (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                className={({ isActive }) =>
-                  cn(
-                    'flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition-colors',
-                    isActive
-                      ? 'bg-primary text-primary-foreground shadow-[0_10px_25px_rgba(37,99,235,0.22)]'
-                      : 'text-foreground hover:bg-sidebar-accent',
+                  return (
+                    <NavLink
+                      key={item.to}
+                      to={item.to}
+                      className={({ isActive }) =>
+                        cn(
+                          'flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition-colors',
+                          isActive
+                            ? 'bg-primary text-primary-foreground shadow-[0_10px_25px_rgba(37,99,235,0.22)]'
+                            : 'text-foreground hover:bg-sidebar-accent',
+                        )
+                      }
+                    >
+                      <Icon />
+                      <span>{item.label}</span>
+                    </NavLink>
                   )
-                }
-              >
-                <Icon />
-                <span>{item.label}</span>
-              </NavLink>
-            )
-          })}
+                })}
+              </div>
+            </div>
+          ))}
         </nav>
 
         <div className="flex flex-col gap-4 rounded-[1.5rem] border border-sidebar-border/70 bg-background/70 p-4">
@@ -137,7 +206,7 @@ export function AppShell() {
             </div>
             <div className="flex flex-col gap-1.5">
               <p className="text-sm font-semibold text-foreground">Trạng thái hệ thống</p>
-              <p className="text-sm leading-6 text-muted-foreground">Điểm danh, lịch học và cảnh báo học vụ đang sẵn sàng để rà soát.</p>
+              <p className="text-sm leading-6 text-muted-foreground">Danh mục đào tạo, đợt đăng ký và đăng ký học phần đang sẵn sàng để rà soát.</p>
             </div>
           </div>
           <Button variant="outline" className="justify-start" onClick={() => void handleLogout()}>

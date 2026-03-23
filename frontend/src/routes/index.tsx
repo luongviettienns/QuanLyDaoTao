@@ -4,10 +4,15 @@ import { AuthLayout } from '@/layouts/AuthLayout'
 import { AppShell } from '@/layouts/AppShell'
 import { RequireAuth } from '@/guards/RequireAuth'
 import { RequireRole } from '@/guards/RequireRole'
-import { LandingPage } from '@/pages/public/LandingPage'
 import { LoginPage } from '@/pages/auth/LoginPage'
 import { DashboardPage } from '@/pages/app/DashboardPage'
 import { AdminPage } from '@/pages/app/admin/AdminPage'
+import { SubjectsPage } from '@/pages/app/admin/SubjectsPage'
+import { HomeroomClassesPage } from '@/pages/app/admin/HomeroomClassesPage'
+import { AcademicDataPage } from '@/pages/app/admin/AcademicDataPage'
+import { CourseSectionsPage } from '@/pages/app/admin/CourseSectionsPage'
+import { RegistrationPeriodsPage } from '@/pages/app/admin/RegistrationPeriodsPage'
+import { CourseRegistrationsPage } from '@/pages/app/admin/CourseRegistrationsPage'
 import { LecturerPage } from '@/pages/app/lecturer/LecturerPage'
 import { StudentPage } from '@/pages/app/student/StudentPage'
 import { ForbiddenPage } from '@/pages/app/ForbiddenPage'
@@ -36,7 +41,7 @@ export function AppRoutes() {
   return (
     <Routes>
       <Route element={<AuthLayout />}>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/login" element={<LoginRoute />} />
       </Route>
 
@@ -48,6 +53,12 @@ export function AppRoutes() {
 
           <Route element={<RequireRole allowedRoles={['admin']} />}>
             <Route path="admin" element={<AdminPage />} />
+            <Route path="admin/subjects" element={<SubjectsPage />} />
+            <Route path="admin/homeroom-classes" element={<HomeroomClassesPage />} />
+            <Route path="admin/academic-data" element={<AcademicDataPage />} />
+            <Route path="admin/course-sections" element={<CourseSectionsPage />} />
+            <Route path="admin/registration-periods" element={<RegistrationPeriodsPage />} />
+            <Route path="admin/course-registrations" element={<CourseRegistrationsPage />} />
           </Route>
 
           <Route element={<RequireRole allowedRoles={['lecturer', 'advisor']} />}>

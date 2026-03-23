@@ -8,61 +8,61 @@ datasource db {
 }
 
 model Role {
-  roleId       BigInt    @id @default(autoincrement()) @map("role_id")
-  roleName     String    @map("role_name") @db.NVarChar(100)
-  description  String?   @db.NVarChar(500)
-  isActive     Boolean   @default(true) @map("is_active")
-  createdAt    DateTime  @default(now()) @map("created_at") @db.DateTime2
-  createdBy    BigInt?   @map("created_by")
-  updatedAt    DateTime? @map("updated_at") @db.DateTime2
-  updatedBy    BigInt?   @map("updated_by")
-  deletedAt    DateTime? @map("deleted_at") @db.DateTime2
-  deletedBy    BigInt?   @map("deleted_by")
-  users        User[]
+  roleId      BigInt    @id @default(autoincrement()) @map("role_id")
+  roleName    String    @map("role_name") @db.NVarChar(100)
+  description String?   @db.NVarChar(500)
+  isActive    Boolean   @default(true) @map("is_active")
+  createdAt   DateTime  @default(now()) @map("created_at") @db.DateTime2
+  createdBy   BigInt?   @map("created_by")
+  updatedAt   DateTime? @map("updated_at") @db.DateTime2
+  updatedBy   BigInt?   @map("updated_by")
+  deletedAt   DateTime? @map("deleted_at") @db.DateTime2
+  deletedBy   BigInt?   @map("deleted_by")
+  users       User[]
 
   @@map("roles")
 }
 
 model User {
-  userId         BigInt         @id @default(autoincrement()) @map("user_id")
-  username       String         @db.NVarChar(100)
-  passwordHash   String         @map("password_hash") @db.NVarChar(255)
-  email          String         @db.NVarChar(255)
-  phone          String?        @db.NVarChar(20)
-  fullName       String         @map("full_name") @db.NVarChar(255)
-  avatarUrl      String?        @map("avatar_url") @db.NVarChar(500)
-  roleId         BigInt         @map("role_id")
-  isActive       Boolean        @default(true) @map("is_active")
-  lastLoginAt    DateTime?      @map("last_login_at") @db.DateTime2
-  createdAt      DateTime       @default(now()) @map("created_at") @db.DateTime2
-  createdBy      BigInt?        @map("created_by")
-  updatedAt      DateTime?      @map("updated_at") @db.DateTime2
-  updatedBy      BigInt?        @map("updated_by")
-  deletedAt      DateTime?      @map("deleted_at") @db.DateTime2
-  deletedBy      BigInt?        @map("deleted_by")
-  role           Role           @relation(fields: [roleId], references: [roleId])
-  refreshTokens  RefreshToken[]
-  auditLogs      AuditLog[]
-  studentProfile Student?
+  userId          BigInt         @id @default(autoincrement()) @map("user_id")
+  username        String         @db.NVarChar(100)
+  passwordHash    String         @map("password_hash") @db.NVarChar(255)
+  email           String         @db.NVarChar(255)
+  phone           String?        @db.NVarChar(20)
+  fullName        String         @map("full_name") @db.NVarChar(255)
+  avatarUrl       String?        @map("avatar_url") @db.NVarChar(500)
+  roleId          BigInt         @map("role_id")
+  isActive        Boolean        @default(true) @map("is_active")
+  lastLoginAt     DateTime?      @map("last_login_at") @db.DateTime2
+  createdAt       DateTime       @default(now()) @map("created_at") @db.DateTime2
+  createdBy       BigInt?        @map("created_by")
+  updatedAt       DateTime?      @map("updated_at") @db.DateTime2
+  updatedBy       BigInt?        @map("updated_by")
+  deletedAt       DateTime?      @map("deleted_at") @db.DateTime2
+  deletedBy       BigInt?        @map("deleted_by")
+  role            Role           @relation(fields: [roleId], references: [roleId], onDelete: NoAction, onUpdate: NoAction)
+  refreshTokens   RefreshToken[]
+  auditLogs       AuditLog[]
+  studentProfile  Student?
   lecturerProfile Lecturer?
 
   @@map("users")
 }
 
 model RefreshToken {
-  id                String        @id @db.UniqueIdentifier
-  userId            BigInt        @map("user_id")
-  tokenHash         String        @map("token_hash") @db.NVarChar(500)
-  expiresAt         DateTime      @map("expires_at") @db.DateTime2
-  createdAt         DateTime      @default(now()) @map("created_at") @db.DateTime2
-  revokedAt         DateTime?     @map("revoked_at") @db.DateTime2
-  replacedByTokenId String?       @map("replaced_by_token_id") @db.UniqueIdentifier
-  deviceName        String?       @map("device_name") @db.NVarChar(255)
-  ipAddress         String?       @map("ip_address") @db.NVarChar(64)
-  userAgent         String?       @map("user_agent") @db.NVarChar(1024)
-  revokedReason     String?       @map("revoked_reason") @db.NVarChar(500)
-  createdByIp       String?       @map("created_by_ip") @db.NVarChar(64)
-  user              User          @relation(fields: [userId], references: [userId])
+  id                String         @id @db.UniqueIdentifier
+  userId            BigInt         @map("user_id")
+  tokenHash         String         @map("token_hash") @db.NVarChar(500)
+  expiresAt         DateTime       @map("expires_at") @db.DateTime2
+  createdAt         DateTime       @default(now()) @map("created_at") @db.DateTime2
+  revokedAt         DateTime?      @map("revoked_at") @db.DateTime2
+  replacedByTokenId String?        @map("replaced_by_token_id") @db.UniqueIdentifier
+  deviceName        String?        @map("device_name") @db.NVarChar(255)
+  ipAddress         String?        @map("ip_address") @db.NVarChar(64)
+  userAgent         String?        @map("user_agent") @db.NVarChar(1024)
+  revokedReason     String?        @map("revoked_reason") @db.NVarChar(500)
+  createdByIp       String?        @map("created_by_ip") @db.NVarChar(64)
+  user              User           @relation(fields: [userId], references: [userId], onDelete: NoAction, onUpdate: NoAction)
   replacedByToken   RefreshToken?  @relation("RefreshTokenReplacement", fields: [replacedByTokenId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   replacesTokens    RefreshToken[] @relation("RefreshTokenReplacement")
 
@@ -70,63 +70,142 @@ model RefreshToken {
 }
 
 model AuditLog {
-  logId       BigInt    @id @default(autoincrement()) @map("log_id")
-  userId      BigInt?   @map("user_id")
-  action      String    @db.NVarChar(100)
-  entityType  String?   @map("entity_type") @db.NVarChar(100)
-  entityId    String?   @map("entity_id") @db.NVarChar(100)
-  oldValues   String?   @map("old_values") @db.NVarChar(Max)
-  newValues   String?   @map("new_values") @db.NVarChar(Max)
-  ipAddress   String?   @map("ip_address") @db.NVarChar(64)
-  userAgent   String?   @map("user_agent") @db.NVarChar(1024)
-  createdAt   DateTime  @default(now()) @map("created_at") @db.DateTime2
-  user        User?     @relation(fields: [userId], references: [userId])
+  logId      BigInt   @id @default(autoincrement()) @map("log_id")
+  userId     BigInt?  @map("user_id")
+  action     String   @db.NVarChar(100)
+  entityType String?  @map("entity_type") @db.NVarChar(100)
+  entityId   String?  @map("entity_id") @db.NVarChar(100)
+  oldValues  String?  @map("old_values") @db.NVarChar(Max)
+  newValues  String?  @map("new_values") @db.NVarChar(Max)
+  ipAddress  String?  @map("ip_address") @db.NVarChar(64)
+  userAgent  String?  @map("user_agent") @db.NVarChar(1024)
+  createdAt  DateTime @default(now()) @map("created_at") @db.DateTime2
+  user       User?    @relation(fields: [userId], references: [userId], onDelete: NoAction, onUpdate: NoAction)
 
   @@map("audit_logs")
 }
 
-model Lecturer {
-  lecturerId    BigInt    @id @default(autoincrement()) @map("lecturer_id")
-  lecturerCode  String    @map("lecturer_code") @db.NVarChar(50)
-  fullName      String    @map("full_name") @db.NVarChar(255)
-  email         String?   @db.NVarChar(255)
-  phone         String?   @db.NVarChar(20)
-  departmentId  BigInt    @map("department_id")
-  userId        BigInt?   @unique(map: "UX_lecturers_user_active") @map("user_id")
-  academicTitle String?   @map("academic_title") @db.NVarChar(100)
-  degree        String?   @db.NVarChar(100)
-  specialization String?  @db.NVarChar(255)
-  position      String?   @db.NVarChar(100)
-  joinDate      DateTime? @map("join_date") @db.Date
-  isActive      Boolean   @default(true) @map("is_active")
-  createdAt     DateTime  @default(now()) @map("created_at") @db.DateTime2
-  createdBy     BigInt?   @map("created_by")
-  updatedAt     DateTime? @map("updated_at") @db.DateTime2
-  updatedBy     BigInt?   @map("updated_by")
-  deletedAt     DateTime? @map("deleted_at") @db.DateTime2
-  deletedBy     BigInt?   @map("deleted_by")
-  user          User?     @relation(fields: [userId], references: [userId])
+model Faculty {
+  facultyId   BigInt     @id @default(autoincrement()) @map("faculty_id")
+  facultyCode String     @map("faculty_code") @db.NVarChar(50)
+  facultyName String     @map("faculty_name") @db.NVarChar(255)
+  description String?    @db.NVarChar(500)
+  isActive    Boolean    @default(true) @map("is_active")
+  createdAt   DateTime   @default(now()) @map("created_at") @db.DateTime2
+  createdBy   BigInt?    @map("created_by")
+  updatedAt   DateTime?  @map("updated_at") @db.DateTime2
+  updatedBy   BigInt?    @map("updated_by")
+  deletedAt   DateTime?  @map("deleted_at") @db.DateTime2
+  deletedBy   BigInt?    @map("deleted_by")
+  departments Department[]
+  majors      Major[]
+  students    Student[]
 
-  @@map("lecturers")
+  @@map("faculties")
 }
 
-model Student {
-  studentId       BigInt    @id @default(autoincrement()) @map("student_id")
-  studentCode     String    @map("student_code") @db.NVarChar(50)
+model Department {
+  departmentId   BigInt     @id @default(autoincrement()) @map("department_id")
+  departmentCode String     @map("department_code") @db.NVarChar(50)
+  departmentName String     @map("department_name") @db.NVarChar(255)
+  facultyId      BigInt     @map("faculty_id")
+  description    String?    @db.NVarChar(500)
+  isActive       Boolean    @default(true) @map("is_active")
+  createdAt      DateTime   @default(now()) @map("created_at") @db.DateTime2
+  createdBy      BigInt?    @map("created_by")
+  updatedAt      DateTime?  @map("updated_at") @db.DateTime2
+  updatedBy      BigInt?    @map("updated_by")
+  deletedAt      DateTime?  @map("deleted_at") @db.DateTime2
+  deletedBy      BigInt?    @map("deleted_by")
+  faculty        Faculty    @relation(fields: [facultyId], references: [facultyId], onDelete: NoAction, onUpdate: NoAction)
+  lecturers      Lecturer[]
+  subjects       Subject[]
+
+  @@map("departments")
+}
+
+model Major {
+  majorId      BigInt                @id @default(autoincrement()) @map("major_id")
+  majorCode    String                @map("major_code") @db.NVarChar(50)
+  majorName    String                @map("major_name") @db.NVarChar(255)
+  facultyId    BigInt                @map("faculty_id")
+  description  String?               @db.NVarChar(500)
+  isActive     Boolean               @default(true) @map("is_active")
+  createdAt    DateTime              @default(now()) @map("created_at") @db.DateTime2
+  createdBy    BigInt?               @map("created_by")
+  updatedAt    DateTime?             @map("updated_at") @db.DateTime2
+  updatedBy    BigInt?               @map("updated_by")
+  deletedAt    DateTime?             @map("deleted_at") @db.DateTime2
+  deletedBy    BigInt?               @map("deleted_by")
+  faculty      Faculty               @relation(fields: [facultyId], references: [facultyId], onDelete: NoAction, onUpdate: NoAction)
+  students     Student[]
+  adminClasses AdministrativeClass[]
+
+  @@map("majors")
+}
+
+model AcademicYear {
+  academicYearId    BigInt               @id @default(autoincrement()) @map("academic_year_id")
+  yearName          String               @map("year_name") @db.NVarChar(50)
+  cohortCode        String?              @map("cohort_code") @db.NVarChar(20)
+  startYear         Int                  @map("start_year")
+  endYear           Int                  @map("end_year")
+  durationYears     Int                  @map("duration_years") @db.TinyInt
+  description       String?              @db.NVarChar(500)
+  isActive          Boolean              @default(true) @map("is_active")
+  createdAt         DateTime             @default(now()) @map("created_at") @db.DateTime2
+  createdBy         BigInt?              @map("created_by")
+  updatedAt         DateTime?            @map("updated_at") @db.DateTime2
+  updatedBy         BigInt?              @map("updated_by")
+  deletedAt         DateTime?            @map("deleted_at") @db.DateTime2
+  deletedBy         BigInt?              @map("deleted_by")
+  schoolYears       SchoolYear[]
+  adminClasses      AdministrativeClass[]
+  students          Student[]
+  classes           Class[]
+  registrationPeriods RegistrationPeriod[]
+
+  @@map("academic_years")
+}
+
+model SchoolYear {
+  schoolYearId   BigInt     @id @default(autoincrement()) @map("school_year_id")
+  yearCode       String     @map("year_code") @db.NVarChar(50)
+  yearName       String     @map("year_name") @db.NVarChar(100)
+  academicYearId BigInt     @map("academic_year_id")
+  startDate      DateTime   @map("start_date") @db.Date
+  endDate        DateTime   @map("end_date") @db.Date
+  semester1Start DateTime?  @map("semester1_start") @db.Date
+  semester1End   DateTime?  @map("semester1_end") @db.Date
+  semester2Start DateTime?  @map("semester2_start") @db.Date
+  semester2End   DateTime?  @map("semester2_end") @db.Date
+  isActive       Boolean    @default(true) @map("is_active")
+  currentSemester Int?      @map("current_semester") @db.TinyInt
+  createdAt      DateTime   @default(now()) @map("created_at") @db.DateTime2
+  createdBy      BigInt?    @map("created_by")
+  updatedAt      DateTime?  @map("updated_at") @db.DateTime2
+  updatedBy      BigInt?    @map("updated_by")
+  deletedAt      DateTime?  @map("deleted_at") @db.DateTime2
+  deletedBy      BigInt?    @map("deleted_by")
+  academicYear   AcademicYear @relation(fields: [academicYearId], references: [academicYearId], onDelete: NoAction, onUpdate: NoAction)
+  classes        Class[]
+
+  @@map("school_years")
+}
+
+model Lecturer {
+  lecturerId      BigInt    @id @default(autoincrement()) @map("lecturer_id")
+  lecturerCode    String    @map("lecturer_code") @db.NVarChar(50)
   fullName        String    @map("full_name") @db.NVarChar(255)
-  dateOfBirth     DateTime? @map("date_of_birth") @db.Date
-  gender          String?   @db.NVarChar(20)
   email           String?   @db.NVarChar(255)
   phone           String?   @db.NVarChar(20)
-  address         String?   @db.NVarChar(500)
-  majorId         BigInt    @map("major_id")
-  academicYearId  BigInt    @map("academic_year_id")
-  advisorId       BigInt?   @map("advisor_id")
-  userId          BigInt?   @unique(map: "UX_students_user_active") @map("user_id")
-  adminClassId    BigInt?   @map("admin_class_id")
-  facultyId       BigInt?   @map("faculty_id")
-  cohortYear      Int?      @map("cohort_year")
-  lastWarningSent DateTime? @map("last_warning_sent") @db.DateTime2
+  departmentId    BigInt    @map("department_id")
+  userId          BigInt?   @unique(map: "UX_lecturers_user_active") @map("user_id")
+  academicTitle   String?   @map("academic_title") @db.NVarChar(100)
+  degree          String?   @db.NVarChar(100)
+  specialization  String?   @db.NVarChar(255)
+  position        String?   @db.NVarChar(100)
+  joinDate        DateTime? @map("join_date") @db.Date
   isActive        Boolean   @default(true) @map("is_active")
   createdAt       DateTime  @default(now()) @map("created_at") @db.DateTime2
   createdBy       BigInt?   @map("created_by")
@@ -134,7 +213,182 @@ model Student {
   updatedBy       BigInt?   @map("updated_by")
   deletedAt       DateTime? @map("deleted_at") @db.DateTime2
   deletedBy       BigInt?   @map("deleted_by")
-  user            User?     @relation(fields: [userId], references: [userId])
+  department      Department @relation(fields: [departmentId], references: [departmentId], onDelete: NoAction, onUpdate: NoAction)
+  user            User?     @relation(fields: [userId], references: [userId], onDelete: NoAction, onUpdate: NoAction)
+  advisedClasses  AdministrativeClass[] @relation("AdministrativeClassAdvisor")
+  advisedStudents Student[] @relation("StudentAdvisor")
+  teachingClasses Class[]   @relation("ClassLecturer")
+
+  @@map("lecturers")
+}
+
+model AdministrativeClass {
+  adminClassId    BigInt      @id @default(autoincrement()) @map("admin_class_id")
+  classCode       String      @map("class_code") @db.NVarChar(50)
+  className       String      @map("class_name") @db.NVarChar(255)
+  majorId         BigInt      @map("major_id")
+  advisorId       BigInt?     @map("advisor_id")
+  academicYearId  BigInt      @map("academic_year_id")
+  cohortYear      Int?        @map("cohort_year")
+  maxStudents     Int?        @map("max_students")
+  currentStudents Int         @default(0) @map("current_students")
+  description     String?     @db.NVarChar(500)
+  isActive        Boolean     @default(true) @map("is_active")
+  createdAt       DateTime    @default(now()) @map("created_at") @db.DateTime2
+  createdBy       BigInt?     @map("created_by")
+  updatedAt       DateTime?   @map("updated_at") @db.DateTime2
+  updatedBy       BigInt?     @map("updated_by")
+  deletedAt       DateTime?   @map("deleted_at") @db.DateTime2
+  deletedBy       BigInt?     @map("deleted_by")
+  major           Major       @relation(fields: [majorId], references: [majorId], onDelete: NoAction, onUpdate: NoAction)
+  advisor         Lecturer?   @relation("AdministrativeClassAdvisor", fields: [advisorId], references: [lecturerId], onDelete: NoAction, onUpdate: NoAction)
+  academicYear    AcademicYear @relation(fields: [academicYearId], references: [academicYearId], onDelete: NoAction, onUpdate: NoAction)
+  students        Student[]
+
+  @@map("administrative_classes")
+}
+
+model Student {
+  studentId           BigInt      @id @default(autoincrement()) @map("student_id")
+  studentCode         String      @map("student_code") @db.NVarChar(50)
+  fullName            String      @map("full_name") @db.NVarChar(255)
+  dateOfBirth         DateTime?   @map("date_of_birth") @db.Date
+  gender              String?     @db.NVarChar(20)
+  email               String?     @db.NVarChar(255)
+  phone               String?     @db.NVarChar(20)
+  address             String?     @db.NVarChar(500)
+  majorId             BigInt      @map("major_id")
+  academicYearId      BigInt      @map("academic_year_id")
+  advisorId           BigInt?     @map("advisor_id")
+  userId              BigInt?     @unique(map: "UX_students_user_active") @map("user_id")
+  adminClassId        BigInt?     @map("admin_class_id")
+  facultyId           BigInt?     @map("faculty_id")
+  cohortYear          Int?        @map("cohort_year")
+  lastWarningSent     DateTime?   @map("last_warning_sent") @db.DateTime2
+  isActive            Boolean     @default(true) @map("is_active")
+  createdAt           DateTime    @default(now()) @map("created_at") @db.DateTime2
+  createdBy           BigInt?     @map("created_by")
+  updatedAt           DateTime?   @map("updated_at") @db.DateTime2
+  updatedBy           BigInt?     @map("updated_by")
+  deletedAt           DateTime?   @map("deleted_at") @db.DateTime2
+  deletedBy           BigInt?     @map("deleted_by")
+  major               Major       @relation(fields: [majorId], references: [majorId], onDelete: NoAction, onUpdate: NoAction)
+  academicYear        AcademicYear @relation(fields: [academicYearId], references: [academicYearId], onDelete: NoAction, onUpdate: NoAction)
+  advisor             Lecturer?   @relation("StudentAdvisor", fields: [advisorId], references: [lecturerId], onDelete: NoAction, onUpdate: NoAction)
+  user                User?       @relation(fields: [userId], references: [userId], onDelete: NoAction, onUpdate: NoAction)
+  administrativeClass AdministrativeClass? @relation(fields: [adminClassId], references: [adminClassId], onDelete: NoAction, onUpdate: NoAction)
+  faculty             Faculty?    @relation(fields: [facultyId], references: [facultyId], onDelete: NoAction, onUpdate: NoAction)
+  enrollments         Enrollment[]
 
   @@map("students")
+}
+
+model Subject {
+  subjectId    BigInt     @id @default(autoincrement()) @map("subject_id")
+  subjectCode  String     @map("subject_code") @db.NVarChar(50)
+  subjectName  String     @map("subject_name") @db.NVarChar(255)
+  credits      Int        @db.TinyInt
+  departmentId BigInt     @map("department_id")
+  description  String?    @db.NVarChar(500)
+  isActive     Boolean    @default(true) @map("is_active")
+  createdAt    DateTime   @default(now()) @map("created_at") @db.DateTime2
+  createdBy    BigInt?    @map("created_by")
+  updatedAt    DateTime?  @map("updated_at") @db.DateTime2
+  updatedBy    BigInt?    @map("updated_by")
+  deletedAt    DateTime?  @map("deleted_at") @db.DateTime2
+  deletedBy    BigInt?    @map("deleted_by")
+  department   Department @relation(fields: [departmentId], references: [departmentId], onDelete: NoAction, onUpdate: NoAction)
+  classes      Class[]
+
+  @@map("subjects")
+}
+
+model Class {
+  classId           BigInt      @id @default(autoincrement()) @map("class_id")
+  classCode         String      @map("class_code") @db.NVarChar(50)
+  className         String      @map("class_name") @db.NVarChar(255)
+  subjectId         BigInt      @map("subject_id")
+  lecturerId        BigInt?     @map("lecturer_id")
+  academicYearId    BigInt      @map("academic_year_id")
+  schoolYearId      BigInt?     @map("school_year_id")
+  semester          Int?        @db.TinyInt
+  maxStudents       Int?        @map("max_students")
+  currentEnrollment Int         @default(0) @map("current_enrollment")
+  isActive          Boolean     @default(true) @map("is_active")
+  createdAt         DateTime    @default(now()) @map("created_at") @db.DateTime2
+  createdBy         BigInt?     @map("created_by")
+  updatedAt         DateTime?   @map("updated_at") @db.DateTime2
+  updatedBy         BigInt?     @map("updated_by")
+  deletedAt         DateTime?   @map("deleted_at") @db.DateTime2
+  deletedBy         BigInt?     @map("deleted_by")
+  subject           Subject     @relation(fields: [subjectId], references: [subjectId], onDelete: NoAction, onUpdate: NoAction)
+  lecturer          Lecturer?   @relation("ClassLecturer", fields: [lecturerId], references: [lecturerId], onDelete: NoAction, onUpdate: NoAction)
+  academicYear      AcademicYear @relation(fields: [academicYearId], references: [academicYearId], onDelete: NoAction, onUpdate: NoAction)
+  schoolYear        SchoolYear? @relation(fields: [schoolYearId], references: [schoolYearId], onDelete: NoAction, onUpdate: NoAction)
+  periodClasses     PeriodClass[]
+  enrollments       Enrollment[]
+
+  @@map("classes")
+}
+
+model RegistrationPeriod {
+  periodId       BigInt      @id @default(autoincrement()) @map("period_id")
+  periodName     String      @map("period_name") @db.NVarChar(255)
+  academicYearId BigInt      @map("academic_year_id")
+  semester       Int         @db.TinyInt
+  startDate      DateTime    @map("start_date") @db.DateTime2
+  endDate        DateTime    @map("end_date") @db.DateTime2
+  status         String      @db.NVarChar(20)
+  periodType     String      @map("period_type") @db.NVarChar(20)
+  description    String?     @db.NVarChar(500)
+  isActive       Boolean     @default(true) @map("is_active")
+  createdAt      DateTime    @default(now()) @map("created_at") @db.DateTime2
+  createdBy      BigInt?     @map("created_by")
+  updatedAt      DateTime?   @map("updated_at") @db.DateTime2
+  updatedBy      BigInt?     @map("updated_by")
+  deletedAt      DateTime?   @map("deleted_at") @db.DateTime2
+  deletedBy      BigInt?     @map("deleted_by")
+  academicYear   AcademicYear @relation(fields: [academicYearId], references: [academicYearId], onDelete: NoAction, onUpdate: NoAction)
+  periodClasses  PeriodClass[]
+
+  @@map("registration_periods")
+}
+
+model PeriodClass {
+  periodClassId      BigInt             @id @default(autoincrement()) @map("period_class_id")
+  periodId           BigInt             @map("period_id")
+  classId            BigInt             @map("class_id")
+  isActive           Boolean            @default(true) @map("is_active")
+  createdAt          DateTime           @default(now()) @map("created_at") @db.DateTime2
+  createdBy          BigInt?            @map("created_by")
+  updatedAt          DateTime?          @map("updated_at") @db.DateTime2
+  updatedBy          BigInt?            @map("updated_by")
+  deletedAt          DateTime?          @map("deleted_at") @db.DateTime2
+  deletedBy          BigInt?            @map("deleted_by")
+  registrationPeriod RegistrationPeriod @relation(fields: [periodId], references: [periodId], onDelete: NoAction, onUpdate: NoAction)
+  class              Class              @relation(fields: [classId], references: [classId], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([periodId, classId], map: "UQ_period_classes_period_class")
+  @@map("period_classes")
+}
+
+model Enrollment {
+  enrollmentId     BigInt    @id @default(autoincrement()) @map("enrollment_id")
+  studentId        BigInt    @map("student_id")
+  classId          BigInt    @map("class_id")
+  enrollmentDate   DateTime  @default(now()) @map("enrollment_date") @db.DateTime2
+  enrollmentStatus String    @default("PENDING") @map("enrollment_status") @db.NVarChar(20)
+  dropDeadline     DateTime? @map("drop_deadline") @db.DateTime2
+  createdAt        DateTime  @default(now()) @map("created_at") @db.DateTime2
+  createdBy        BigInt?   @map("created_by")
+  updatedAt        DateTime? @map("updated_at") @db.DateTime2
+  updatedBy        BigInt?   @map("updated_by")
+  deletedAt        DateTime? @map("deleted_at") @db.DateTime2
+  deletedBy        BigInt?   @map("deleted_by")
+  student          Student   @relation(fields: [studentId], references: [studentId], onDelete: NoAction, onUpdate: NoAction)
+  class            Class     @relation(fields: [classId], references: [classId], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([classId, studentId], map: "UQ_enrollments_class_student")
+  @@unique([enrollmentId, classId], map: "UQ_enrollments_enrollment_class")
+  @@map("enrollments")
 }

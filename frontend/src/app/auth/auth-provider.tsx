@@ -1,24 +1,19 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type PropsWithChildren } from 'react'
-import { useLocation } from 'react-router-dom'
 import { fetchMe, loginWithPassword, postLogout, postLogoutAll, postRefresh } from './auth-api'
 import { AuthContext, type AuthContextValue } from './auth-context'
 import type { AuthUser, LoginPayload } from './auth-types'
 import { setAccessTokenStore } from '@/lib/access-token-store'
 import { registerAuthRefresh } from '@/lib/auth-refresh-registry'
 
-function shouldBootstrapSession(pathname: string) {
-  return pathname.startsWith('/app')
-}
-
 export function AuthProvider({ children }: PropsWithChildren) {
-  const location = useLocation()
   const [accessToken, setAccessTokenState] = useState<string | null>(null)
   const [user, setUser] = useState<AuthUser | null>(null)
-  const [isBootstrapping, setIsBootstrapping] = useState(false)
+  const [isBootstrapping, setIsBootstrapping] = useState(true)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   const refreshPromiseRef = useRef<Promise<string | null> | null>(null)
+  const bootstrapOnceRef = useRef(false)
 
   const setToken = useCallback((token: string | null) => {
     setAccessTokenState(token)
@@ -57,14 +52,12 @@ export function AuthProvider({ children }: PropsWithChildren) {
   }, [refreshAccessToken])
 
   useEffect(() => {
-    let cancelled = false
-
-    if (!shouldBootstrapSession(location.pathname)) {
-      setIsBootstrapping(false)
-      return () => {
-        cancelled = true
-      }
+    if (bootstrapOnceRef.current) {
+      return
     }
+
+    bootstrapOnceRef.current = true
+    let cancelled = false
 
     ;(async () => {
       setIsBootstrapping(true)
@@ -97,7 +90,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
     return () => {
       cancelled = true
     }
-  }, [clearAuthState, location.pathname, refreshAccessToken])
+  }, [clearAuthState, refreshAccessToken])
 
   const login = useCallback(
     async (payload: LoginPayload) => {

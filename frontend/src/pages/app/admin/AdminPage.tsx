@@ -1,165 +1,176 @@
-import { ArrowRight, BellRing, ClipboardCheck, Download, ShieldAlert, Waypoints } from 'lucide-react'
-import { adminAlerts, adminAnnouncements, adminQuickActions, adminSchedules, adminStats } from '@/pages/app/admin/admin-dashboard.mock'
+import { ArrowRight, CalendarClock, FolderKanban, GraduationCap, LibraryBig, ListChecks, Users } from 'lucide-react'
+import { NavLink } from 'react-router-dom'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import { DashboardHeader } from '@/components/dashboard/DashboardHeader'
-import { AlertList } from '@/components/dashboard/AlertList'
 import { QuickActions } from '@/components/dashboard/QuickActions'
-import { ScheduleList } from '@/components/dashboard/ScheduleList'
 import { SectionCard } from '@/components/dashboard/SectionCard'
 import { StatCard } from '@/components/dashboard/StatCard'
 import { StatusBadge } from '@/components/dashboard/StatusBadge'
+
+const adminStats = [
+  {
+    label: 'Môn học',
+    value: 'API sẵn sàng',
+    note: 'Đã có backend quản lý danh mục môn học và sẵn sàng để gắn vào giao diện quản trị.',
+    icon: LibraryBig,
+    status: { tone: 'done' as const, text: 'Backend OK' },
+  },
+  {
+    label: 'Lớp hành chính',
+    value: 'API sẵn sàng',
+    note: 'Danh sách lớp hành chính, chi tiết lớp và sinh viên theo lớp đã có ở backend.',
+    icon: Users,
+    status: { tone: 'done' as const, text: 'Backend OK' },
+  },
+  {
+    label: 'Lớp học phần',
+    value: 'API sẵn sàng',
+    note: 'Backend lớp học phần đã có danh sách, chi tiết và thao tác quản trị cơ bản.',
+    icon: GraduationCap,
+    status: { tone: 'today' as const, text: 'Đang tích hợp UI' },
+  },
+  {
+    label: 'Đăng ký học phần',
+    value: 'Quy trình đã khép kín',
+    note: 'Đợt đăng ký, gắn lớp vào đợt và đăng ký/hủy học phần đã có backend để nối vào giao diện admin.',
+    icon: ListChecks,
+    status: { tone: 'attention' as const, text: 'Cần dashboard admin' },
+  },
+]
+
+const adminQuickActions = [
+  {
+    title: 'Mở danh mục môn học',
+    description: 'Rà soát mã môn, tín chỉ và bộ môn phụ trách đang dùng trong hệ thống.',
+    icon: LibraryBig,
+  },
+  {
+    title: 'Xem lớp hành chính',
+    description: 'Theo dõi quy mô lớp, cố vấn học tập và phân bố sinh viên theo từng khoá.',
+    icon: Users,
+  },
+  {
+    title: 'Quản lý lớp học phần',
+    description: 'Theo dõi lớp mở theo kỳ, giảng viên phụ trách và sức chứa hiện tại.',
+    icon: GraduationCap,
+  },
+  {
+    title: 'Điều hành đợt đăng ký',
+    description: 'Rà soát đợt đăng ký mở, lớp đã gắn vào period và trạng thái enrollment.',
+    icon: CalendarClock,
+  },
+]
+
+const adminModules = [
+  {
+    title: 'Môn học',
+    description: 'Quản lý danh mục môn học đang dùng cho lớp học phần.',
+    to: '/app/admin/subjects',
+    tone: 'done' as const,
+    label: 'Sẵn sàng tích hợp',
+  },
+  {
+    title: 'Lớp hành chính',
+    description: 'Rà soát lớp theo khoá, ngành và cố vấn học tập.',
+    to: '/app/admin/homeroom-classes',
+    tone: 'done' as const,
+    label: 'Sẵn sàng tích hợp',
+  },
+  {
+    title: 'Dữ liệu học vụ',
+    description: 'Theo dõi niên khoá, năm học, học kỳ và đợt đăng ký hiện tại.',
+    to: '/app/admin/academic-data',
+    tone: 'today' as const,
+    label: 'Đang dùng API nền',
+  },
+  {
+    title: 'Lớp học phần',
+    description: 'Theo dõi lớp học phần mở theo môn, giảng viên và sức chứa.',
+    to: '/app/admin/course-sections',
+    tone: 'today' as const,
+    label: 'Đang dùng API nền',
+  },
+  {
+    title: 'Đợt đăng ký',
+    description: 'Rà soát trạng thái period, mở/đóng và lớp được gắn vào period.',
+    to: '/app/admin/registration-periods',
+    tone: 'attention' as const,
+    label: 'Quy trình trọng tâm',
+  },
+  {
+    title: 'Đăng ký học phần',
+    description: 'Theo dõi enrollment và chuẩn bị tích hợp dashboard tra cứu toàn cục.',
+    to: '/app/admin/course-registrations',
+    tone: 'attention' as const,
+    label: 'Đang hoàn thiện UI',
+  },
+]
 
 export function AdminPage() {
   return (
     <div className="flex flex-col gap-6">
       <DashboardHeader
         eyebrow="Bảng điều hành quản trị"
-        title="Tình trạng vận hành đào tạo hôm nay"
-        description="Rà soát nhanh lớp học đang diễn ra, các cảnh báo học vụ và những việc cần ưu tiên xử lý trong ngày."
-        meta="Cập nhật theo phiên đăng nhập giả lập"
+        title="Điều hành danh mục đào tạo và học phần"
+        description="Dashboard admin tập trung vào các module đã có backend: môn học, lớp hành chính, dữ liệu học vụ, lớp học phần, đợt đăng ký và đăng ký học phần."
+        meta="Sprint 3 · tích hợp backend vào khu vực quản trị"
         action={
-          <Button>
-            <Download data-icon="inline-start" />
-            Xuất báo cáo nhanh
-          </Button>
+          <NavLink to="/app/admin/registration-periods">
+            <Button>
+              <CalendarClock data-icon="inline-start" />
+              Mở điều hành đăng ký
+            </Button>
+          </NavLink>
         }
       />
 
-      <div className="grid gap-4 xl:grid-cols-4 md:grid-cols-2">
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {adminStats.map((item) => (
           <StatCard key={item.label} {...item} />
         ))}
       </div>
 
       <Alert className="rounded-[1.75rem] border-border/80 bg-accent/70 px-4 py-4 sm:px-5">
-        <ShieldAlert />
-        <AlertTitle>Cần xử lý ngay trong đầu ca</AlertTitle>
+        <FolderKanban />
+        <AlertTitle>Trọng tâm vận hành hiện tại</AlertTitle>
         <AlertDescription>
-          12 lớp chưa chốt điểm danh, 7 sinh viên vượt ngưỡng vắng và 3 lịch học vừa thay đổi phòng. Ưu tiên rà soát trước khi phát sinh sai lệch dữ liệu học vụ.
+          Ưu tiên rà soát danh mục đào tạo, lớp học phần và trạng thái đợt đăng ký trước khi mở rộng sang dashboard báo cáo và giao diện sinh viên.
         </AlertDescription>
       </Alert>
 
-      <div className="grid gap-6 xl:grid-cols-[1.4fr_1fr]">
-        <div className="flex flex-col gap-6">
-          <QuickActions
-            title="Tác vụ quản trị ưu tiên"
-            description="Các thao tác thường dùng để giữ dữ liệu lớp học, điểm danh và thông báo ở trạng thái đồng bộ."
-            actions={adminQuickActions}
-          />
+      <QuickActions
+        title="Tác vụ nhanh"
+        description="Các lối vào chính để rà soát dữ liệu đào tạo và quy trình đăng ký học phần trong khu vực admin."
+        actions={adminQuickActions}
+      />
 
-          <SectionCard
-            title="Lớp và mốc cần chú ý"
-            description="Những đầu việc cần nhà trường hoặc phòng đào tạo rà soát trước khi chốt dữ liệu cuối ngày."
-            action={
-              <Button variant="outline">
-                <Waypoints data-icon="inline-start" />
-                Mở danh sách chi tiết
-              </Button>
-            }
-          >
-            <div className="grid gap-3">
-              <div className="flex flex-col gap-3 rounded-[1.5rem] border border-border/70 bg-background/75 p-4 md:flex-row md:items-center md:justify-between">
+      <SectionCard title="Các module quản trị hiện có" description="Những khu vực admin đã có backend và đang được đưa vào sidebar menu.">
+        <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
+          {adminModules.map((module) => (
+            <NavLink
+              key={module.to}
+              to={module.to}
+              className="rounded-[1.5rem] border border-border/70 bg-background/80 p-4 transition-colors hover:bg-accent/55"
+            >
+              <div className="flex items-start justify-between gap-3">
                 <div className="flex flex-col gap-1.5">
-                  <p className="font-medium text-foreground">Khối CNTT · 4 lớp thực hành đổi phòng</p>
-                  <p className="text-sm leading-6 text-muted-foreground">Cần đồng bộ lại phòng máy trước ca chiều để tránh trùng lịch và sai thông báo sinh viên.</p>
+                  <p className="font-medium text-foreground">{module.title}</p>
+                  <p className="text-sm leading-6 text-muted-foreground">{module.description}</p>
                 </div>
-                <StatusBadge tone="attention">Đang rà soát</StatusBadge>
+                <StatusBadge tone={module.tone}>{module.label}</StatusBadge>
               </div>
-              <div className="flex flex-col gap-3 rounded-[1.5rem] border border-border/70 bg-background/75 p-4 md:flex-row md:items-center md:justify-between">
-                <div className="flex flex-col gap-1.5">
-                  <p className="font-medium text-foreground">Báo cáo điểm danh tuần 8</p>
-                  <p className="text-sm leading-6 text-muted-foreground">Dữ liệu từ 2 bộ môn chưa được chốt, cần hoàn tất trước 17:30 để chuyển cảnh báo học vụ.</p>
-                </div>
-                <StatusBadge tone="critical">Hạn cuối hôm nay</StatusBadge>
-              </div>
-              <div className="flex flex-col gap-3 rounded-[1.5rem] border border-border/70 bg-background/75 p-4 md:flex-row md:items-center md:justify-between">
-                <div className="flex flex-col gap-1.5">
-                  <p className="font-medium text-foreground">Danh sách sinh viên vượt ngưỡng vắng</p>
-                  <p className="text-sm leading-6 text-muted-foreground">Đã phát sinh thêm 7 sinh viên cần thông báo tới cố vấn học tập trong buổi sáng.</p>
-                </div>
-                <StatusBadge tone="today">Trong ngày</StatusBadge>
-              </div>
-            </div>
-          </SectionCard>
-        </div>
-
-        <div className="flex flex-col gap-6">
-          <AlertList
-            title="Cảnh báo vận hành"
-            description="Các điểm cần theo dõi liên quan tới điểm danh, lịch học và trạng thái học vụ."
-            items={adminAlerts}
-          />
-
-          <ScheduleList
-            title="Lịch công việc trong ngày"
-            description="Các mốc kiểm tra dữ liệu và chốt báo cáo cần theo dõi trong phiên làm việc hiện tại."
-            items={adminSchedules}
-          />
-
-          <SectionCard title="Thông báo nội bộ" description="Những cập nhật cần phổ biến tới khoa, bộ môn và tài khoản quản trị.">
-            <div className="flex flex-col gap-3">
-              {adminAnnouncements.map((item) => (
-                <article key={item.title} className="flex items-start gap-4 rounded-[1.5rem] border border-border/70 bg-background/75 p-4">
-                  <div className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                    <item.icon />
-                  </div>
-                  <div className="flex min-w-0 flex-1 flex-col gap-1.5">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <p className="font-medium text-foreground">{item.title}</p>
-                      <StatusBadge tone={item.tone}>{item.meta}</StatusBadge>
-                    </div>
-                    <p className="text-sm leading-6 text-muted-foreground">{item.description}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </SectionCard>
-        </div>
-      </div>
-
-      <SectionCard title="Tóm tắt cuối phiên" description="Ba nhóm chỉ số cần giữ ổn định trước khi kết thúc ngày làm việc.">
-        <div className="grid gap-3 lg:grid-cols-3">
-          <div className="rounded-[1.5rem] border border-border/70 bg-background/75 p-4">
-            <div className="flex items-center gap-3">
-              <div className="flex size-10 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                <ClipboardCheck />
-              </div>
-              <div>
-                <p className="font-medium text-foreground">Điểm danh đã chốt</p>
-                <p className="text-sm text-muted-foreground">52 / 64 buổi học hôm nay</p>
-              </div>
-            </div>
-          </div>
-          <div className="rounded-[1.5rem] border border-border/70 bg-background/75 p-4">
-            <div className="flex items-center gap-3">
-              <div className="flex size-10 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                <ShieldAlert />
-              </div>
-              <div>
-                <p className="font-medium text-foreground">Cảnh báo cần xử lý</p>
-                <p className="text-sm text-muted-foreground">27 mục ưu tiên, 9 mục ở mức cao</p>
-              </div>
-            </div>
-          </div>
-          <div className="rounded-[1.5rem] border border-border/70 bg-background/75 p-4">
-            <div className="flex items-center gap-3">
-              <div className="flex size-10 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                <BellRing />
-              </div>
-              <div>
-                <p className="font-medium text-foreground">Thông báo đang chờ phát hành</p>
-                <p className="text-sm text-muted-foreground">3 thông báo sẽ gửi sau khi rà soát xong dữ liệu</p>
-              </div>
-            </div>
-          </div>
+            </NavLink>
+          ))}
         </div>
       </SectionCard>
 
-      <Button variant="ghost" className="w-fit self-start">
-        Xem toàn bộ điều hành học vụ
-        <ArrowRight data-icon="inline-end" />
-      </Button>
+      <NavLink to="/app/admin/subjects" className="w-fit">
+        <Button variant="ghost" className="w-fit self-start">
+          Đi tới quản trị danh mục
+          <ArrowRight data-icon="inline-end" />
+        </Button>
+      </NavLink>
     </div>
   )
 }

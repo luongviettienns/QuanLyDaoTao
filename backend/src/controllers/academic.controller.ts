@@ -3,6 +3,7 @@ import {
   getAcademicReferenceData,
   getAcademicYearsData,
   getCurrentRegistrationPeriodData,
+  getDepartmentsData,
   getRegistrationPeriodsData,
   getSchoolYearsData,
   getSemesterMetadata,
@@ -25,6 +26,12 @@ export async function getSchoolYearsController(_req: Request, res: Response) {
   const data = await getSchoolYearsData()
 
   res.status(200).json(successResponse('Lấy danh sách năm học thành công.', data))
+}
+
+export async function getDepartmentsController(_req: Request, res: Response) {
+  const data = await getDepartmentsData()
+
+  res.status(200).json(successResponse('Lấy danh sách bộ môn thành công.', data))
 }
 
 export async function getSemesterMetadataController(_req: Request, res: Response) {

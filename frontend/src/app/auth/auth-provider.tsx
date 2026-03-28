@@ -1,159 +1,108 @@
-import { useCallback, useEffect, useMemo, useRef, useState, type PropsWithChildren } from 'react'
-import { fetchMe, loginWithPassword, postLogout, postLogoutAll, postRefresh } from './auth-api'
-import { AuthContext, type AuthContextValue } from './auth-context'
-import type { AuthUser, LoginPayload } from './auth-types'
-import { setAccessTokenStore } from '@/lib/access-token-store'
-import { registerAuthRefresh } from '@/lib/auth-refresh-registry'
+import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { toast } from 'sonner'
+import { ACCESS_TOKEN_KEY } from '@/app/auth/auth-storage'
+import { configureAccessTokenSetter } from '@/lib/auth-token-bridge'
+import { resetSessionExpiredEmitter } from '@/lib/session-expired'
+import {
+  ApiError,
+  type AuthUser,
+  getMeApi,
+  loginApi,
+  refreshAccessTokenApi,
+  type LoginPayload,
+} from './auth-api'
 
-export function AuthProvider({ children }: PropsWithChildren) {
-  const [accessToken, setAccessTokenState] = useState<string | null>(null)
-  const [user, setUser] = useState<AuthUser | null>(null)
-  const [isBootstrapping, setIsBootstrapping] = useState(true)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+type AuthState = {
+  user: AuthUser | null
+  accessToken: string | null
+  isBootstrapping: boolean
+}
 
-  const refreshPromiseRef = useRef<Promise<string | null> | null>(null)
-  const bootstrapOnceRef = useRef(false)
+type LogoutOptions = {
+  reason?: 'session_expired'
+}
 
-  const setToken = useCallback((token: string | null) => {
-    setAccessTokenState(token)
-    setAccessTokenStore(token)
+type AuthContextValue = AuthState & {
+  login: (payload: LoginPayload) => Promise<void>
+  logout: (options?: LogoutOptions) => void
+}
+
+const AuthContext = createContext<AuthContextValue | null>(null)
+
+type AuthProviderProps = {
+  children: React.ReactNode
+}
+
+export function AuthProvider({ children }: AuthProviderProps) {
+  const [state, setState] = useState<AuthState>({
+    user: null,
+    accessToken: null,
+    isBootstrapping: true,
+  })
+
+  useEffect(() => {
+    configureAccessTokenSetter((token) => {
+      setState((s) => ({ ...s, accessToken: token }))
+    })
   }, [])
 
-  const clearAuthState = useCallback(() => {
-    setToken(null)
-    setUser(null)
-  }, [setToken])
-
-  const refreshAccessToken = useCallback(async (): Promise<string | null> => {
-    if (refreshPromiseRef.current) {
-      return refreshPromiseRef.current
-    }
-
-    const promise = (async () => {
-      try {
-        const result = await postRefresh()
-        setToken(result.accessToken)
-        return result.accessToken
-      } catch {
-        clearAuthState()
-        return null
-      } finally {
-        refreshPromiseRef.current = null
-      }
-    })()
-
-    refreshPromiseRef.current = promise
-    return promise
-  }, [clearAuthState, setToken])
-
   useEffect(() => {
-    return registerAuthRefresh(refreshAccessToken)
-  }, [refreshAccessToken])
+    const savedToken = localStorage.getItem(ACCESS_TOKEN_KEY)
 
-  useEffect(() => {
-    if (bootstrapOnceRef.current) {
+    if (!savedToken) {
+      setState((prev) => ({ ...prev, isBootstrapping: false }))
       return
     }
 
-    bootstrapOnceRef.current = true
-    let cancelled = false
-
-    ;(async () => {
-      setIsBootstrapping(true)
-
-      try {
-        const refreshed = await refreshAccessToken()
-
-        if (cancelled || !refreshed) {
-          return
+    void getMeApi(savedToken)
+      .then((result) => {
+        setState({ user: result.user, accessToken: savedToken, isBootstrapping: false })
+      })
+      .catch(async () => {
+        try {
+          const refreshed = await refreshAccessTokenApi()
+          localStorage.setItem(ACCESS_TOKEN_KEY, refreshed.accessToken)
+          const me = await getMeApi(refreshed.accessToken)
+          setState({ user: me.user, accessToken: refreshed.accessToken, isBootstrapping: false })
+        } catch {
+          localStorage.removeItem(ACCESS_TOKEN_KEY)
+          setState({ user: null, accessToken: null, isBootstrapping: false })
         }
-
-        const me = await fetchMe(refreshed)
-
-        if (cancelled) {
-          return
-        }
-
-        setUser(me)
-      } catch {
-        if (!cancelled) {
-          clearAuthState()
-        }
-      } finally {
-        if (!cancelled) {
-          setIsBootstrapping(false)
-        }
-      }
-    })()
-
-    return () => {
-      cancelled = true
-    }
-  }, [clearAuthState, refreshAccessToken])
-
-  const login = useCallback(
-    async (payload: LoginPayload) => {
-      setIsSubmitting(true)
-      setError(null)
-
-      try {
-        const result = await loginWithPassword(payload)
-        setToken(result.accessToken)
-        setUser(result.user)
-        return result.user
-      } catch (loginError) {
-        const nextError = loginError instanceof Error ? loginError.message : 'Đăng nhập thất bại.'
-        setError(nextError)
-        throw loginError
-      } finally {
-        setIsSubmitting(false)
-      }
-    },
-    [setToken],
-  )
-
-  const logout = useCallback(async () => {
-    try {
-      await postLogout()
-    } finally {
-      clearAuthState()
-      setError(null)
-    }
-  }, [clearAuthState])
-
-  const logoutAll = useCallback(async () => {
-    const token = accessToken
-
-    try {
-      if (token) {
-        await postLogoutAll(token)
-      }
-    } finally {
-      clearAuthState()
-      setError(null)
-    }
-  }, [accessToken, clearAuthState])
+      })
+  }, [])
 
   const value = useMemo<AuthContextValue>(
     () => ({
-      isAuthenticated: user !== null,
-      isBootstrapping,
-      isSubmitting,
-      role: user?.appRole ?? null,
-      user,
-      accessToken,
-      error,
-      login,
-      logout,
-      logoutAll,
-      refreshAccessToken,
-      clearError: () => {
-        setError(null)
+      ...state,
+      async login(payload) {
+        const result = await loginApi(payload)
+        localStorage.setItem(ACCESS_TOKEN_KEY, result.accessToken)
+        resetSessionExpiredEmitter()
+        setState({ user: result.user, accessToken: result.accessToken, isBootstrapping: false })
+        toast.success(`Đăng nhập thành công. Xin chào ${result.user.fullName}.`)
+      },
+      logout(options) {
+        localStorage.removeItem(ACCESS_TOKEN_KEY)
+        setState({ user: null, accessToken: null, isBootstrapping: false })
+        if (options?.reason === 'session_expired') {
+          toast.warning('Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.')
+        } else {
+          toast.info('Bạn đã đăng xuất khỏi hệ thống.')
+        }
       },
     }),
-    [accessToken, error, isBootstrapping, isSubmitting, login, logout, logoutAll, refreshAccessToken, user],
+    [state],
   )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+}
+
+export function useAuth() {
+  const context = useContext(AuthContext)
+
+  if (!context) {
+    throw new ApiError('useAuth phai duoc dung trong AuthProvider.')
+  }
+
+  return context
 }

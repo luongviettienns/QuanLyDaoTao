@@ -2,6 +2,7 @@ import {
   findAcademicYears,
   findAdministrativeClasses,
   findCourseOfferings,
+  findDepartments,
   findRegistrationPeriods,
   findSchoolYears,
   findSubjects,
@@ -79,6 +80,18 @@ export async function getRegistrationPeriodsData() {
         yearName: item.academicYear.yearName,
         cohortCode: item.academicYear.cohortCode,
       },
+    })),
+  }
+}
+
+export async function getDepartmentsData() {
+  const departments = await findDepartments()
+
+  return {
+    items: departments.map((item) => ({
+      id: item.departmentId.toString(),
+      code: item.departmentCode,
+      name: item.departmentName,
     })),
   }
 }

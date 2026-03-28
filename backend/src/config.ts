@@ -15,6 +15,11 @@ const cookieSameSite = (process.env.COOKIE_SAME_SITE?.trim() || 'lax') as 'lax' 
 const refreshTokenRememberMeExpiresIn = process.env.REFRESH_TOKEN_REMEMBER_ME_EXPIRES_IN?.trim() || '30d'
 const refreshTokenCookieName = process.env.REFRESH_TOKEN_COOKIE_NAME?.trim() || 'refreshToken'
 const refreshTokenCookiePath = process.env.REFRESH_TOKEN_COOKIE_PATH?.trim() || '/api/v1/auth'
+const corsOriginRaw = process.env.CORS_ORIGIN!.trim()
+const corsOrigins = corsOriginRaw
+  .split(',')
+  .map((item) => item.trim())
+  .filter(Boolean)
 
 for (const envVar of requiredEnvVars) {
   if (!process.env[envVar]?.trim()) {
@@ -35,5 +40,5 @@ export const config = {
   cookieSecure,
   cookieSameSite,
   cookieSecret: process.env.COOKIE_SECRET?.trim() || null,
-  corsOrigin: process.env.CORS_ORIGIN!.trim(),
+  corsOrigins,
 } as const

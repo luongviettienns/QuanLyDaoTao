@@ -13,7 +13,19 @@ export function createApp() {
 
   app.use(
     cors({
-      origin: config.corsOrigin,
+      origin(origin, callback) {
+        if (!origin) {
+          callback(null, true)
+          return
+        }
+
+        if (config.corsOrigins.includes(origin)) {
+          callback(null, true)
+          return
+        }
+
+        callback(new Error(`CORS blocked for origin: ${origin}`))
+      },
       credentials: true,
     }),
   )

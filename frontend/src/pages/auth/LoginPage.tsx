@@ -1,202 +1,177 @@
-import { useMemo, useState } from 'react'
-import { ArrowRight, Eye, EyeOff } from 'lucide-react'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { useAuth } from '@/app/auth/auth-context'
-import { defaultRoleRoute } from '@/app/auth/roles'
+import { useState } from 'react'
+import { CircleCheck, Headset, LockKeyhole, ShieldCheck } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'sonner'
+import { ApiError } from '@/app/auth/auth-api'
+import { useAuth } from '@/app/auth/auth-provider'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Separator } from '@/components/ui/separator'
 
-const supportItems = [
-  'Quên mật khẩu?',
-  'Tài khoản bị khóa?',
-  'Liên hệ quản trị hệ thống',
-]
+type FormState = {
+  identifier: string
+  password: string
+  rememberMe: boolean
+}
+
+const initialForm: FormState = {
+  identifier: '',
+  password: '',
+  rememberMe: false,
+}
 
 export function LoginPage() {
   const navigate = useNavigate()
-  const location = useLocation()
-  const { login, isSubmitting, error, clearError } = useAuth()
-  const [identifier, setIdentifier] = useState('')
-  const [password, setPassword] = useState('')
-  const [rememberMe, setRememberMe] = useState(false)
-  const [showPassword, setShowPassword] = useState(false)
+  const { login } = useAuth()
+  const [form, setForm] = useState<FormState>(initialForm)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
-  const redirectTo = useMemo(() => {
-    const nextPath = (location.state as { from?: string } | null)?.from
-
-    if (nextPath && nextPath.startsWith('/app')) {
-      return nextPath
-    }
-
-    return null
-  }, [location.state])
-
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    setErrorMessage(null)
+    setIsSubmitting(true)
 
     try {
-      const authUser = await login({
-        identifier,
-        password,
-        rememberMe,
-      })
-
-      navigate(redirectTo ?? defaultRoleRoute[authUser.appRole], { replace: true })
-    } catch {
-      // lỗi đã được lưu trong auth context
+      await login(form)
+      navigate('/dashboard', { replace: true })
+    } catch (error) {
+      if (error instanceof ApiError) {
+        setErrorMessage(error.message)
+        toast.error(error.message)
+      } else {
+        setErrorMessage('Không thể đăng nhập. Vui lòng thử lại.')
+        toast.error('Không thể đăng nhập. Vui lòng thử lại.')
+      }
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
   return (
-    <section className="relative mx-auto flex min-h-screen w-full max-w-7xl items-center px-4 py-6 sm:px-6 lg:px-8 lg:py-10">
-      <div className="grid w-full gap-4 lg:grid-cols-[minmax(280px,0.72fr)_minmax(460px,560px)] lg:items-center">
-        <div className="hidden lg:block">
-          <div className="max-w-md space-y-4 rounded-[2rem] border border-white/50 bg-white/45 p-6 shadow-[0_24px_70px_rgba(15,23,42,0.08)] backdrop-blur-xl dark:border-white/10 dark:bg-white/4 dark:shadow-[0_24px_70px_rgba(2,6,23,0.4)]">
-            <div className="inline-flex items-center rounded-full border border-slate-200/80 bg-white/85 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-500 dark:border-white/10 dark:bg-white/10 dark:text-slate-300">
-              EducationWebsite
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-muted/30 px-4 py-8 md:px-8">
+      <div className="grid w-full max-w-6xl gap-6 lg:grid-cols-[1.1fr_1fr]">
+        <Card className="hidden lg:flex">
+          <CardHeader className="gap-3">
+            <Badge variant="secondary" className="w-fit">
+              Cổng đào tạo trực tuyến
+            </Badge>
+            <CardTitle className="text-2xl">Hệ thống Quản lý Đào tạo</CardTitle>
+            <CardDescription>
+              Quản lý đăng ký học phần, lớp hành chính, cố vấn học tập và các tác vụ đào tạo trong một nền tảng tập trung.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-5">
+            <Alert>
+              <CircleCheck data-icon="inline-start" />
+              <AlertTitle>Đợt đăng ký học phần đang mở</AlertTitle>
+              <AlertDescription>
+                Học kỳ 2 năm học 2025-2026: từ 08:00 ngày 25/03/2026 đến 23:59 ngày 31/03/2026.
+              </AlertDescription>
+            </Alert>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Card size="sm">
+                <CardHeader>
+                  <CardTitle className="text-sm">Đối tượng sử dụng</CardTitle>
+                  <CardDescription>Sinh viên, giảng viên, cố vấn và quản trị viên.</CardDescription>
+                </CardHeader>
+              </Card>
+              <Card size="sm">
+                <CardHeader>
+                  <CardTitle className="text-sm">Yêu cầu đăng nhập</CardTitle>
+                  <CardDescription>Mã người dùng hoặc email công vụ, kèm mật khẩu đã cấp.</CardDescription>
+                </CardHeader>
+              </Card>
             </div>
-            <div className="space-y-2">
-              <h1 className="font-heading text-4xl leading-tight text-slate-950 dark:text-slate-50">
-                Đăng nhập hệ thống
-              </h1>
-              <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">
-                Dùng tài khoản được cấp để đăng nhập.
-              </p>
+            <Separator />
+            <div className="flex items-start gap-3 text-sm text-muted-foreground">
+              <Headset className="mt-0.5 size-4" />
+              <p>Hỗ trợ kỹ thuật: 028 3888 1020 (08:00 - 17:00) hoặc email hotro@ql-daotao.edu.vn.</p>
             </div>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
 
-        <div className="w-full lg:justify-self-end">
-          <Card className="overflow-hidden rounded-[2rem] border border-white/70 bg-white/90 py-0 shadow-[0_30px_80px_rgba(15,23,42,0.12)] backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/70 dark:shadow-[0_30px_80px_rgba(2,6,23,0.5)]">
-            <CardHeader className="space-y-5 border-b border-slate-200/80 px-7 pt-7 pb-6 sm:px-8 sm:pt-8 dark:border-white/10">
-              <div className="flex items-start justify-between gap-4">
-                <div className="space-y-3">
-                  <div className="inline-flex items-center rounded-full border border-slate-200/80 bg-slate-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500 dark:border-white/10 dark:bg-white/5 dark:text-slate-300">
-                    Đăng nhập
-                  </div>
-                  <div className="space-y-2">
-                    <CardTitle className="font-heading text-4xl leading-tight text-slate-950 dark:text-slate-50">
-                      Đăng nhập
-                    </CardTitle>
-                    <CardDescription className="max-w-md text-sm leading-6 text-slate-600 dark:text-slate-300">
-                      Nhập thông tin đăng nhập.
-                    </CardDescription>
-                  </div>
-                </div>
-
-                <div className="rounded-2xl border border-slate-200/80 bg-slate-50/80 px-4 py-3 text-right text-xs leading-5 text-slate-500 dark:border-white/10 dark:bg-white/5 dark:text-slate-400">
-                  <p>Phiên bảo mật</p>
-                  <p>Kiểm tra quyền sau xác thực</p>
-                </div>
+        <Card className="mx-auto w-full max-w-xl">
+          <CardHeader className="gap-3">
+            <div className="flex items-center justify-between gap-2">
+              <Badge>Đăng nhập an toàn</Badge>
+              <span className="text-xs text-muted-foreground">Phiên bản 2026.03</span>
+            </div>
+            <CardTitle className="text-2xl">Đăng nhập hệ thống</CardTitle>
+            <CardDescription>
+              Sử dụng tài khoản được nhà trường cấp để truy cập các chức năng nghiệp vụ đào tạo.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={onSubmit} className="flex flex-col gap-5">
+              <div className="flex flex-col gap-2">
+                <Label htmlFor="identifier">Tài khoản hoặc email</Label>
+                <Input
+                  id="identifier"
+                  type="text"
+                  value={form.identifier}
+                  onChange={(event) => setForm((prev) => ({ ...prev, identifier: event.target.value }))}
+                  placeholder="Ví dụ: sv000123 hoặc sv000123@ql-daotao.edu.vn"
+                  autoComplete="username"
+                  required
+                />
               </div>
-            </CardHeader>
 
-            <CardContent className="px-7 pt-7 pb-7 sm:px-8">
-              <form className="space-y-5" onSubmit={handleSubmit}>
-                <div className="space-y-2">
-                  <label htmlFor="identifier" className="text-sm font-semibold text-slate-700 dark:text-slate-200">
-                    Tài khoản
-                  </label>
-                  <Input
-                    id="identifier"
-                    type="text"
-                    autoComplete="username"
-                    placeholder="Ví dụ: admin01 hoặc giangvien01"
-                    className="h-12 rounded-2xl border-slate-200 bg-white/80 px-4 dark:border-white/10 dark:bg-white/5"
-                    value={identifier}
-                    onChange={(event) => {
-                      clearError()
-                      setIdentifier(event.target.value)
-                    }}
+              <div className="flex flex-col gap-2">
+                <Label htmlFor="password">Mật khẩu</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  value={form.password}
+                  onChange={(event) => setForm((prev) => ({ ...prev, password: event.target.value }))}
+                  placeholder="Nhập mật khẩu của bạn"
+                  autoComplete="current-password"
+                  required
+                />
+              </div>
+
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center gap-2">
+                  <Checkbox
+                    id="rememberMe"
+                    checked={form.rememberMe}
+                    onCheckedChange={(checked) => setForm((prev) => ({ ...prev, rememberMe: checked === true }))}
                   />
-                  <p className="text-xs leading-5 text-slate-500 dark:text-slate-400">
-                    Nhập email hoặc mã tài khoản.
-                  </p>
+                  <Label htmlFor="rememberMe">Ghi nhớ đăng nhập 30 ngày</Label>
                 </div>
-
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between gap-3">
-                    <label htmlFor="password" className="text-sm font-semibold text-slate-700 dark:text-slate-200">
-                      Mật khẩu
-                    </label>
-                    <button
-                      type="button"
-                      className="text-xs font-medium text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
-                      onClick={() => setShowPassword((current) => !current)}
-                    >
-                      {showPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'}
-                    </button>
-                  </div>
-
-                  <div className="relative">
-                    <Input
-                      id="password"
-                      type={showPassword ? 'text' : 'password'}
-                      autoComplete="current-password"
-                      placeholder="Nhập mật khẩu"
-                      className="h-12 rounded-2xl border-slate-200 bg-white/80 px-4 pr-12 dark:border-white/10 dark:bg-white/5"
-                      value={password}
-                      onChange={(event) => {
-                        clearError()
-                        setPassword(event.target.value)
-                      }}
-                    />
-                    <button
-                      type="button"
-                      aria-label={showPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'}
-                      className="absolute top-1/2 right-3 inline-flex size-8 -translate-y-1/2 items-center justify-center rounded-xl text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-slate-100"
-                      onClick={() => setShowPassword((current) => !current)}
-                    >
-                      {showPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
-                    </button>
-                  </div>
-                </div>
-
-                <div className="flex flex-col gap-3 rounded-2xl border border-slate-200/80 bg-slate-50/80 px-4 py-3 dark:border-white/10 dark:bg-white/5 sm:flex-row sm:items-center sm:justify-between">
-                  <label className="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-200">
-                    <Checkbox checked={rememberMe} onCheckedChange={(checked) => setRememberMe(checked === true)} />
-                    Ghi nhớ đăng nhập
-                  </label>
-                  <button
-                    type="button"
-                    className="text-left text-sm font-medium text-slate-600 transition-colors hover:text-slate-950 dark:text-slate-300 dark:hover:text-slate-100 sm:text-right"
-                  >
-                    Quên mật khẩu?
-                  </button>
-                </div>
-
-                {error ? (
-                  <Alert variant="destructive" className="rounded-2xl border-destructive/20 bg-destructive/5">
-                    <AlertTitle>Không thể đăng nhập</AlertTitle>
-                    <AlertDescription>{error}</AlertDescription>
-                  </Alert>
-                ) : null}
-
-                <Button
-                  className="h-12 w-full rounded-2xl bg-slate-950 text-white hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-slate-200"
-                  type="submit"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? 'Đang xác thực' : 'Đăng nhập'}
-                  <ArrowRight data-icon="inline-end" />
-                </Button>
-              </form>
-
-              <div className="mt-6 grid gap-2 rounded-[1.5rem] border border-slate-200/80 bg-white/72 px-4 py-4 text-sm leading-6 text-slate-600 dark:border-white/10 dark:bg-white/5 dark:text-slate-300">
-                <p className="font-semibold text-slate-900 dark:text-slate-100">Hỗ trợ</p>
-                <ul className="grid gap-1.5">
-                  {supportItems.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
+                <button type="button" className="text-sm text-primary hover:underline">
+                  Quên mật khẩu?
+                </button>
               </div>
-            </CardContent>
-          </Card>
-        </div>
+
+              {errorMessage ? (
+                <Alert variant="destructive">
+                  <LockKeyhole data-icon="inline-start" />
+                  <AlertTitle>Đăng nhập thất bại</AlertTitle>
+                  <AlertDescription>{errorMessage}</AlertDescription>
+                </Alert>
+              ) : null}
+
+              <Button type="submit" disabled={isSubmitting} className="w-full">
+                {isSubmitting ? 'Đang xác thực tài khoản...' : 'Đăng nhập'}
+              </Button>
+
+              <div className="flex items-start gap-2 text-xs text-muted-foreground">
+                <ShieldCheck className="mt-0.5 size-4 shrink-0" />
+                <p>
+                  Dữ liệu được bảo vệ theo chính sách an toàn thông tin của nhà trường. Vui lòng đăng xuất sau khi dùng trên
+                  máy công cộng.
+                </p>
+              </div>
+            </form>
+          </CardContent>
+        </Card>
       </div>
-    </section>
+    </main>
   )
 }

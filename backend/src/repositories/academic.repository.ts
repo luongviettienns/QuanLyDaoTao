@@ -106,6 +106,21 @@ export async function findSubjects() {
   })
 }
 
+export async function findDepartments() {
+  return prisma.department.findMany({
+    where: {
+      deletedAt: null,
+      isActive: true,
+    },
+    orderBy: [{ departmentCode: 'asc' }],
+    select: {
+      departmentId: true,
+      departmentCode: true,
+      departmentName: true,
+    },
+  })
+}
+
 export async function findCourseOfferings() {
   return prisma.class.findMany({
     where: {

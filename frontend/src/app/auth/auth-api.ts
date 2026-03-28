@@ -1,120 +1,115 @@
-import { appConfig } from '@/config/env'
-import type {
-  ApiErrorResponse,
-  AuthUser,
-  BackendAuthUser,
-  LoginPayload,
-  LoginResponse,
-  MeResponse,
-  RefreshResponse,
-} from './auth-types'
-import type { AppRole } from './roles'
+export type AuthUser =
+  | {
+      id: string
+      username: string
+      email: string
+      fullName: string
+      role: { id: string; name: string }
+      profile: { type: 'admin' }
+    }
+  | {
+      id: string
+      username: string
+      email: string
+      fullName: string
+      role: { id: string; name: string }
+      profile:
+        | { type: 'lecturer'; lecturerId: string; lecturerCode: string }
+        | { type: 'advisor'; lecturerId: string; lecturerCode: string }
+        | { type: 'student'; studentId: string; studentCode: string }
+    }
 
-const base = appConfig.backendBaseUrl.replace(/\/$/, '')
+type SuccessEnvelope<T> = {
+  success: true
+  message: string
+  data: T
+}
 
-function mapBackendRoleToAppRole(roleName: string): AppRole {
-  switch (roleName) {
-    case 'Admin':
-      return 'admin'
-    case 'Giảng viên':
-      return 'lecturer'
-    case 'Cố vấn':
-      return 'advisor'
-    case 'Sinh viên':
-      return 'student'
-    default:
-      throw new Error(`Unsupported backend role: ${roleName}`)
+type ErrorEnvelope = {
+  success: false
+  message: string
+  code: string
+  details?: unknown
+}
+
+export type LoginPayload = {
+  identifier: string
+  password: string
+  rememberMe?: boolean
+}
+
+export type LoginResult = {
+  accessToken: string
+  tokenType: 'Bearer'
+  expiresIn: number
+  user: AuthUser
+}
+
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL as string | undefined)?.trim() || 'http://localhost:4000/api/v1'
+
+export class ApiError extends Error {
+  public readonly code?: string
+  public readonly status?: number
+
+  constructor(
+    message: string,
+    code?: string,
+    status?: number,
+  ) {
+    super(message)
+    this.code = code
+    this.status = status
   }
 }
 
-export function toAuthUser(user: Omit<AuthUser, 'appRole'>): AuthUser {
-  return {
-    ...user,
-    appRole: mapBackendRoleToAppRole(user.role.name),
+async function parseResponse<T>(response: Response): Promise<T> {
+  const payload = (await response.json()) as SuccessEnvelope<T> | ErrorEnvelope
+
+  if (!response.ok || payload.success === false) {
+    const message = 'message' in payload ? payload.message : 'Yeu cau that bai.'
+    const code = 'code' in payload ? payload.code : undefined
+    throw new ApiError(message, code, response.status)
   }
+
+  return payload.data
 }
 
-async function parseJson<T>(response: Response): Promise<T | ApiErrorResponse> {
-  return response.json() as Promise<T | ApiErrorResponse>
-}
-
-export async function loginWithPassword(payload: LoginPayload): Promise<{ accessToken: string; expiresIn: number; user: AuthUser }> {
-  const response = await fetch(`${base}/auth/login`, {
+export async function loginApi(input: LoginPayload): Promise<LoginResult> {
+  const response = await fetch(`${API_BASE_URL}/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     credentials: 'include',
-    body: JSON.stringify(payload),
+    body: JSON.stringify(input),
   })
 
-  const json = await parseJson<LoginResponse>(response)
-
-  if (!response.ok || !json.success) {
-    const err = json as ApiErrorResponse
-    throw new Error(err.message || 'Đăng nhập thất bại.')
-  }
-
-  const data = json.data
-
-  return {
-    accessToken: data.accessToken,
-    expiresIn: data.expiresIn,
-    user: toAuthUser(data.user),
-  }
+  return parseResponse<LoginResult>(response)
 }
 
-export async function fetchMe(accessToken: string): Promise<AuthUser> {
-  const response = await fetch(`${base}/auth/me`, {
-    headers: { Authorization: `Bearer ${accessToken}` },
+export async function getMeApi(accessToken: string): Promise<{ user: AuthUser }> {
+  const response = await fetch(`${API_BASE_URL}/auth/me`, {
+    method: 'GET',
     credentials: 'include',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
   })
 
-  const json = await parseJson<MeResponse>(response)
-
-  if (!response.ok || !json.success) {
-    const err = json as ApiErrorResponse
-    throw new Error(err.message || 'Không tải được thông tin tài khoản.')
-  }
-
-  return toAuthUser(json.data.user)
+  return parseResponse<{ user: AuthUser }>(response)
 }
 
-export async function postRefresh(): Promise<{ accessToken: string; expiresIn: number }> {
-  const response = await fetch(`${base}/auth/refresh`, {
+export type RefreshAccessTokenResult = {
+  accessToken: string
+  tokenType: 'Bearer'
+  expiresIn: number
+}
+
+/** Làm mới JWT (cookie refresh). Không dùng authorizedFetch để tránh vòng lặp. */
+export async function refreshAccessTokenApi(): Promise<RefreshAccessTokenResult> {
+  const response = await fetch(`${API_BASE_URL}/auth/refresh`, {
     method: 'POST',
     credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
   })
 
-  const json = await parseJson<RefreshResponse>(response)
-
-  if (!response.ok || !json.success) {
-    const err = json as ApiErrorResponse
-    throw new Error(err.message || 'Làm mới phiên thất bại.')
-  }
-
-  return {
-    accessToken: json.data.accessToken,
-    expiresIn: json.data.expiresIn,
-  }
+  return parseResponse<RefreshAccessTokenResult>(response)
 }
-
-export async function postLogout(): Promise<void> {
-  await fetch(`${base}/auth/logout`, {
-    method: 'POST',
-    credentials: 'include',
-  })
-}
-
-export async function postLogoutAll(accessToken: string): Promise<void> {
-  const response = await fetch(`${base}/auth/logout-all`, {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${accessToken}` },
-    credentials: 'include',
-  })
-
-  if (!response.ok) {
-    const json = await parseJson<ApiErrorResponse>(response)
-    throw new Error((json as ApiErrorResponse).message || 'Đăng xuất tất cả thiết bị thất bại.')
-  }
-}
-
-export type { BackendAuthUser }

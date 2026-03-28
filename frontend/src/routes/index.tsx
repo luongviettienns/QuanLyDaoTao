@@ -1,77 +1,79 @@
-import { Navigate, Route, Routes } from 'react-router-dom'
-import { useAuth } from '@/app/auth/auth-context'
-import { AuthLayout } from '@/layouts/AuthLayout'
-import { AppShell } from '@/layouts/AppShell'
-import { RequireAuth } from '@/guards/RequireAuth'
-import { RequireRole } from '@/guards/RequireRole'
+import { useEffect } from 'react'
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
+import { useAuth } from '@/app/auth/auth-provider'
+import { SESSION_EXPIRED_EVENT } from '@/lib/session-expired'
 import { LoginPage } from '@/pages/auth/LoginPage'
-import { DashboardPage } from '@/pages/app/DashboardPage'
-import { AdminPage } from '@/pages/app/admin/AdminPage'
-import { SubjectsPage } from '@/pages/app/admin/SubjectsPage'
-import { HomeroomClassesPage } from '@/pages/app/admin/HomeroomClassesPage'
-import { AcademicDataPage } from '@/pages/app/admin/AcademicDataPage'
-import { CourseSectionsPage } from '@/pages/app/admin/CourseSectionsPage'
-import { RegistrationPeriodsPage } from '@/pages/app/admin/RegistrationPeriodsPage'
-import { CourseRegistrationsPage } from '@/pages/app/admin/CourseRegistrationsPage'
-import { LecturerPage } from '@/pages/app/lecturer/LecturerPage'
-import { StudentPage } from '@/pages/app/student/StudentPage'
-import { ForbiddenPage } from '@/pages/app/ForbiddenPage'
-import { NotFoundPage } from '@/pages/app/NotFoundPage'
-import { RoleHomeRedirect } from '@/pages/app/RoleHomeRedirect'
+import { DashboardPage } from '@/pages/dashboard/DashboardPage'
 
-function LoginRoute() {
-  const { isAuthenticated, isBootstrapping } = useAuth()
+/** JWT/refresh hết hạn → đăng xuất, toast, chuyển về /login. */
+function SessionExpiredListener() {
+  const navigate = useNavigate()
+  const { logout } = useAuth()
+
+  useEffect(() => {
+    const handler = () => {
+      logout({ reason: 'session_expired' })
+      navigate('/login', { replace: true })
+    }
+    window.addEventListener(SESSION_EXPIRED_EVENT, handler)
+    return () => window.removeEventListener(SESSION_EXPIRED_EVENT, handler)
+  }, [navigate, logout])
+
+  return null
+}
+
+function ProtectedRoute({ children }: { children: React.ReactNode }) {
+  const { user, isBootstrapping } = useAuth()
 
   if (isBootstrapping) {
-    return (
-      <div className="flex min-h-[50vh] w-full items-center justify-center">
-        <p className="text-sm text-slate-500">Đang kiểm tra phiên...</p>
-      </div>
-    )
+    return <p className="grid min-h-screen place-items-center text-muted-foreground">Dang tai phien dang nhap...</p>
   }
 
-  if (isAuthenticated) {
-    return <Navigate to="/app" replace />
+  if (!user) {
+    return <Navigate to="/login" replace />
   }
 
-  return <LoginPage />
+  return <>{children}</>
+}
+
+function GuestRoute({ children }: { children: React.ReactNode }) {
+  const { user, isBootstrapping } = useAuth()
+
+  if (isBootstrapping) {
+    return <p className="grid min-h-screen place-items-center text-muted-foreground">Dang tai phien dang nhap...</p>
+  }
+
+  if (user) {
+    return <Navigate to="/dashboard" replace />
+  }
+
+  return <>{children}</>
 }
 
 export function AppRoutes() {
   return (
-    <Routes>
-      <Route element={<AuthLayout />}>
-        <Route path="/" element={<Navigate to="/login" replace />} />
-        <Route path="/login" element={<LoginRoute />} />
-      </Route>
-
-      <Route element={<RequireAuth />}>
-        <Route path="/app" element={<AppShell />}>
-          <Route index element={<RoleHomeRedirect />} />
-          <Route path="dashboard" element={<DashboardPage />} />
-          <Route path="forbidden" element={<ForbiddenPage />} />
-
-          <Route element={<RequireRole allowedRoles={['admin']} />}>
-            <Route path="admin" element={<AdminPage />} />
-            <Route path="admin/subjects" element={<SubjectsPage />} />
-            <Route path="admin/homeroom-classes" element={<HomeroomClassesPage />} />
-            <Route path="admin/academic-data" element={<AcademicDataPage />} />
-            <Route path="admin/course-sections" element={<CourseSectionsPage />} />
-            <Route path="admin/registration-periods" element={<RegistrationPeriodsPage />} />
-            <Route path="admin/course-registrations" element={<CourseRegistrationsPage />} />
-          </Route>
-
-          <Route element={<RequireRole allowedRoles={['lecturer', 'advisor']} />}>
-            <Route path="lecturer" element={<LecturerPage />} />
-          </Route>
-
-          <Route element={<RequireRole allowedRoles={['student']} />}>
-            <Route path="student" element={<StudentPage />} />
-          </Route>
-        </Route>
-      </Route>
-
-      <Route path="*" element={<NotFoundPage />} />
+    <>
+      <SessionExpiredListener />
+      <Routes>
+      <Route
+        path="/login"
+        element={
+          <GuestRoute>
+            <LoginPage />
+          </GuestRoute>
+        }
+      />
+      <Route
+        path="/dashboard/*"
+        element={
+          <ProtectedRoute>
+            <DashboardPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route path="/" element={<Navigate to="/dashboard" replace />} />
+      <Route path="*" element={<Navigate to="/dashboard" replace />} />
     </Routes>
+    </>
   )
 }

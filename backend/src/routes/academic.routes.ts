@@ -3,6 +3,7 @@ import {
   getAcademicReferenceController,
   getAcademicYearsController,
   getCurrentRegistrationPeriodController,
+  getDepartmentsController,
   getSchoolYearsController,
   getSemesterMetadataController,
 } from '../controllers/academic.controller.js'
@@ -47,6 +48,13 @@ academicRouter.get(
     AUTH_ROLE_NAMES.STUDENT,
   ),
   asyncHandler(getSchoolYearsController),
+)
+
+academicRouter.get(
+  '/academic/departments',
+  authenticate(),
+  authorizeRoles(AUTH_ROLE_NAMES.ADMIN),
+  asyncHandler(getDepartmentsController),
 )
 
 academicRouter.get(

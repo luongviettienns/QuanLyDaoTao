@@ -8,6 +8,8 @@ Thumbs.db
 # Editor
 .vscode/
 .idea/
+.cursor/
+**/.cursor/
 *.swp
 *.swo
 

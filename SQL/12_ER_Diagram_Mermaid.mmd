@@ -1,0 +1,635 @@
+erDiagram
+    -- ===========================================
+    -- 🎓 HỆ THỐNG QUẢN LÝ ĐIỂM DANH SINH VIÊN
+    -- ER Diagram - Mermaid Format
+    -- Generated: 2026-04-02
+    -- ===========================================
+
+    -- ===== CORE SYSTEM TABLES =====
+
+    ROLES {
+        varchar role_id PK
+        varchar role_name
+        varchar description
+        bit is_active
+        datetime created_at
+        varchar created_by
+        datetime updated_at
+        varchar updated_by
+        datetime deleted_at
+        varchar deleted_by
+    }
+
+    USERS {
+        varchar user_id PK
+        varchar username UK
+        varchar password_hash
+        varchar email UK
+        varchar phone
+        nvarchar full_name
+        varchar avatar_url
+        varchar role_id FK
+        bit is_active
+        datetime last_login_at
+        datetime created_at
+        varchar created_by
+        datetime updated_at
+        varchar updated_by
+        datetime deleted_at
+        varchar deleted_by
+    }
+
+    PERMISSIONS {
+        varchar permission_id PK
+        varchar permission_code UK
+        nvarchar permission_name
+        nvarchar description
+        varchar parent_code
+        varchar icon
+        int sort_order
+        bit is_active
+        bit is_menu_only
+        datetime created_at
+        varchar created_by
+        datetime updated_at
+        varchar updated_by
+        datetime deleted_at
+        varchar deleted_by
+    }
+
+    ROLE_PERMISSIONS {
+        varchar role_id PK,FK
+        varchar permission_id PK,FK
+        datetime created_at
+        varchar created_by
+    }
+
+    AUDIT_LOGS {
+        bigint log_id PK
+        varchar user_id FK
+        varchar action
+        varchar entity_type
+        varchar entity_id
+        nvarchar old_values
+        nvarchar new_values
+        varchar ip_address
+        varchar user_agent
+        datetime created_at
+    }
+
+    REFRESH_TOKENS {
+        uniqueidentifier id PK
+        varchar user_id FK
+        varchar token UK
+        datetime expires_at
+        datetime created_at
+        datetime revoked_at
+        varchar replaced_by_token
+    }
+
+    -- ===== ACADEMIC STRUCTURE =====
+
+    FACULTIES {
+        varchar faculty_id PK
+        varchar faculty_code UK
+        nvarchar faculty_name UK
+        nvarchar description
+        bit is_active
+        datetime created_at
+        varchar created_by
+        datetime updated_at
+        varchar updated_by
+        datetime deleted_at
+        varchar deleted_by
+    }
+
+    DEPARTMENTS {
+        varchar department_id PK
+        varchar department_code UK
+        nvarchar department_name
+        varchar faculty_id FK
+        nvarchar description
+        datetime created_at
+        varchar created_by
+        datetime updated_at
+        varchar updated_by
+        datetime deleted_at
+        varchar deleted_by
+    }
+
+    MAJORS {
+        varchar major_id PK
+        nvarchar major_name
+        varchar major_code UK
+        varchar faculty_id FK
+        nvarchar description
+        datetime created_at
+        varchar created_by
+        datetime updated_at
+        varchar updated_by
+        datetime deleted_at
+        varchar deleted_by
+    }
+
+    ACADEMIC_YEARS {
+        varchar academic_year_id PK
+        nvarchar year_name UK
+        nvarchar cohort_code
+        int start_year
+        int end_year
+        int duration_years
+        nvarchar description
+        bit is_active
+        datetime created_at
+        varchar created_by
+        datetime updated_at
+        varchar updated_by
+        datetime deleted_at
+        varchar deleted_by
+    }
+
+    SCHOOL_YEARS {
+        varchar school_year_id PK
+        nvarchar year_code UK
+        nvarchar year_name
+        varchar academic_year_id FK
+        date start_date
+        date end_date
+        date semester1_start
+        date semester1_end
+        date semester2_start
+        date semester2_end
+        bit is_active
+        int current_semester
+        datetime created_at
+        varchar created_by
+        datetime updated_at
+        varchar updated_by
+        datetime deleted_at
+        varchar deleted_by
+    }
+
+    -- ===== PEOPLE =====
+
+    LECTURERS {
+        varchar lecturer_id PK
+        varchar lecturer_code UK
+        nvarchar full_name
+        varchar email
+        varchar phone
+        varchar department_id FK
+        varchar user_id FK
+        bit is_active
+        datetime created_at
+        varchar created_by
+        datetime updated_at
+        varchar updated_by
+        datetime deleted_at
+        varchar deleted_by
+    }
+
+    STUDENTS {
+        varchar student_id PK
+        varchar student_code UK
+        nvarchar full_name
+        date date_of_birth
+        nvarchar gender
+        varchar email
+        varchar phone
+        nvarchar address
+        varchar major_id FK
+        varchar academic_year_id FK
+        varchar advisor_id
+        varchar user_id FK
+        datetime last_warning_sent
+        bit is_active
+        datetime created_at
+        varchar created_by
+        datetime updated_at
+        varchar updated_by
+        datetime deleted_at
+        varchar deleted_by
+    }
+
+    ADMINISTRATIVE_CLASSES {
+        varchar admin_class_id PK
+        varchar class_code UK
+        nvarchar class_name
+        varchar major_id FK
+        varchar advisor_id FK
+        varchar academic_year_id FK
+        int cohort_year
+        int max_students
+        int current_students
+        nvarchar description
+        bit is_active
+        datetime created_at
+        varchar created_by
+        datetime updated_at
+        varchar updated_by
+        datetime deleted_at
+        varchar deleted_by
+    }
+
+    -- ===== ACADEMIC CORE =====
+
+    SUBJECTS {
+        varchar subject_id PK
+        varchar subject_code UK
+        nvarchar subject_name
+        int credits
+        varchar department_id FK
+        nvarchar description
+        datetime created_at
+        varchar created_by
+        datetime updated_at
+        varchar updated_by
+        datetime deleted_at
+        varchar deleted_by
+    }
+
+    SUBJECT_PREREQUISITES {
+        varchar prerequisite_id PK
+        varchar subject_id FK
+        varchar prerequisite_subject_id FK
+        nvarchar description
+        bit is_active
+        datetime created_at
+        varchar created_by
+    }
+
+    CLASSES {
+        varchar class_id PK
+        varchar class_code UK
+        nvarchar class_name
+        varchar subject_id FK
+        varchar lecturer_id FK
+        varchar academic_year_id FK
+        varchar school_year_id FK
+        int semester
+        int max_students
+        int current_enrollment
+        nvarchar schedule
+        nvarchar room
+        datetime created_at
+        varchar created_by
+        datetime updated_at
+        varchar updated_by
+        datetime deleted_at
+        varchar deleted_by
+    }
+
+    ENROLLMENTS {
+        varchar enrollment_id PK
+        varchar student_id FK
+        varchar class_id FK
+        datetime enrollment_date
+        nvarchar status
+        datetime created_at
+        varchar created_by
+        datetime deleted_at
+        varchar deleted_by
+    }
+
+    ATTENDANCES {
+        varchar attendance_id PK
+        varchar enrollment_id FK
+        varchar class_id FK
+        datetime attendance_date
+        nvarchar status
+        nvarchar note
+        varchar marked_by
+        datetime created_at
+        varchar created_by
+        datetime updated_at
+        varchar updated_by
+        datetime deleted_at
+        varchar deleted_by
+    }
+
+    GRADES {
+        varchar grade_id PK
+        varchar enrollment_id FK
+        decimal midterm_score
+        decimal final_score
+        decimal total_score
+        varchar letter_grade
+        decimal attendance_score
+        decimal assignment_score
+        datetime created_at
+        varchar created_by
+        datetime updated_at
+        varchar updated_by
+        datetime deleted_at
+        varchar deleted_by
+    }
+
+    GPAS {
+        varchar gpa_id PK
+        varchar student_id FK
+        varchar academic_year_id FK
+        varchar school_year_id FK
+        int semester
+        decimal gpa10
+        decimal gpa4
+        int total_credits
+        int accumulated_credits
+        nvarchar rank_text
+        bit is_active
+        datetime created_at
+        varchar created_by
+        datetime updated_at
+        varchar updated_by
+        datetime deleted_at
+        varchar deleted_by
+    }
+
+    -- ===== REGISTRATION SYSTEM =====
+
+    REGISTRATION_PERIODS {
+        varchar period_id PK
+        nvarchar period_name
+        varchar academic_year_id FK
+        int semester
+        date start_date
+        date end_date
+        nvarchar status
+        nvarchar description
+        bit is_active
+        datetime created_at
+        varchar created_by
+        datetime updated_at
+        varchar updated_by
+        datetime deleted_at
+        varchar deleted_by
+    }
+
+    PERIOD_CLASSES {
+        varchar period_class_id PK
+        varchar period_id FK
+        varchar class_id FK
+        bit is_active
+        datetime created_at
+        varchar created_by
+        datetime updated_at
+        varchar updated_by
+        datetime deleted_at
+        varchar deleted_by
+    }
+
+    -- ===== TIMETABLE & ROOMS =====
+
+    ROOMS {
+        varchar room_id PK
+        varchar room_code UK
+        nvarchar room_name
+        nvarchar building
+        nvarchar room_type
+        int capacity
+        nvarchar facilities
+        bit is_active
+        datetime created_at
+        varchar created_by
+        datetime updated_at
+        varchar updated_by
+        datetime deleted_at
+        varchar deleted_by
+    }
+
+    TIMETABLE_SESSIONS {
+        varchar session_id PK
+        varchar class_id FK
+        varchar subject_id FK
+        varchar lecturer_id FK
+        varchar room_id FK
+        varchar school_year_id FK
+        int week_no
+        int weekday
+        time start_time
+        time end_time
+        int period_from
+        int period_to
+        nvarchar recurrence
+        int duration_minutes
+        nvarchar status
+        nvarchar notes
+        datetime created_at
+        varchar created_by
+        datetime updated_at
+        varchar updated_by
+        datetime deleted_at
+        varchar deleted_by
+    }
+
+    -- ===== GRADE MANAGEMENT =====
+
+    GRADE_FORMULA_CONFIG {
+        varchar config_id PK
+        varchar subject_id FK
+        decimal midterm_weight
+        decimal final_weight
+        decimal attendance_weight
+        decimal assignment_weight
+        decimal lab_weight
+        decimal project_weight
+        bit is_active
+        datetime created_at
+        varchar created_by
+        datetime updated_at
+        varchar updated_by
+        datetime deleted_at
+        varchar deleted_by
+    }
+
+    GRADE_APPEALS {
+        varchar appeal_id PK
+        varchar enrollment_id FK
+        nvarchar appeal_reason
+        nvarchar admin_notes
+        nvarchar status
+        datetime appeal_date
+        datetime processed_date
+        varchar processed_by
+        datetime created_at
+        varchar created_by
+        datetime updated_at
+        varchar updated_by
+        datetime deleted_at
+        varchar deleted_by
+    }
+
+    RETAKE_RECORDS {
+        varchar retake_id PK
+        varchar enrollment_id FK
+        decimal retake_fee
+        nvarchar status
+        datetime exam_date
+        varchar exam_room
+        datetime created_at
+        varchar created_by
+        datetime updated_at
+        varchar updated_by
+        datetime deleted_at
+        varchar deleted_by
+    }
+
+    -- ===== EXAM MANAGEMENT =====
+
+    EXAM_SCHEDULES {
+        varchar exam_id PK
+        varchar class_id FK
+        nvarchar exam_name
+        nvarchar exam_type
+        date exam_date
+        time start_time
+        time end_time
+        varchar room_id FK
+        int duration_minutes
+        int total_students
+        nvarchar notes
+        nvarchar status
+        datetime created_at
+        varchar created_by
+        datetime updated_at
+        varchar updated_by
+        datetime deleted_at
+        varchar deleted_by
+    }
+
+    EXAM_ASSIGNMENTS {
+        varchar assignment_id PK
+        varchar exam_id FK
+        varchar student_id FK
+        nvarchar seat_number
+        nvarchar status
+        decimal score
+        datetime created_at
+        varchar created_by
+        datetime updated_at
+        varchar updated_by
+        datetime deleted_at
+        varchar deleted_by
+    }
+
+    -- ===== ADVISOR & WARNINGS =====
+
+    ADVISOR_WARNING_CONFIG {
+        int config_id PK
+        decimal attendance_threshold
+        decimal gpa_threshold
+        nvarchar email_template
+        nvarchar email_subject
+        bit auto_send_emails
+        datetime created_at
+        varchar created_by
+        datetime updated_at
+        varchar updated_by
+    }
+
+    -- ===== NOTIFICATIONS =====
+
+    NOTIFICATIONS {
+        varchar notification_id PK
+        varchar user_id
+        nvarchar message
+        nvarchar notification_type
+        varchar recipient_id
+        nvarchar title
+        nvarchar content
+        nvarchar type
+        bit is_read
+        datetime sent_date
+        bit is_active
+        datetime created_at
+        varchar created_by
+        datetime updated_at
+        varchar updated_by
+        datetime deleted_at
+        varchar deleted_by
+    }
+
+    -- ===== STUDENT TRANSFERS =====
+
+    STUDENT_CLASS_TRANSFERS {
+        varchar transfer_id PK
+        varchar student_id FK
+        varchar from_class_id FK
+        varchar to_class_id FK
+        nvarchar reason
+        nvarchar status
+        datetime transfer_date
+        datetime approved_date
+        varchar approved_by
+        datetime created_at
+        varchar created_by
+        datetime updated_at
+        varchar updated_by
+        datetime deleted_at
+        varchar deleted_by
+    }
+
+    -- ===== RELATIONSHIPS =====
+
+    ROLES ||--o{ USERS : "has"
+    ROLES ||--o{ ROLE_PERMISSIONS : "grants"
+    PERMISSIONS ||--o{ ROLE_PERMISSIONS : "assigned to"
+    USERS ||--o{ REFRESH_TOKENS : "owns"
+    USERS ||--o{ AUDIT_LOGS : "performs"
+
+    FACULTIES ||--o{ DEPARTMENTS : "contains"
+    DEPARTMENTS ||--o{ MAJORS : "has"
+    DEPARTMENTS ||--o{ LECTURERS : "employs"
+    MAJORS ||--o{ STUDENTS : "enrolls"
+    ACADEMIC_YEARS ||--o{ SCHOOL_YEARS : "contains"
+    ACADEMIC_YEARS ||--o{ STUDENTS : "cohort"
+    ACADEMIC_YEARS ||--o{ CLASSES : "belongs to"
+
+    USERS ||--o{ STUDENTS : "links to"
+    USERS ||--o{ LECTURERS : "links to"
+
+    MAJORS ||--o{ ADMINISTRATIVE_CLASSES : "organizes"
+    ACADEMIC_YEARS ||--o{ ADMINISTRATIVE_CLASSES : "cohort"
+    LECTURERS ||--o| ADMINISTRATIVE_CLASSES : "advises"
+
+    SUBJECTS ||--o{ CLASSES : "offered as"
+    SUBJECTS ||--o{ SUBJECT_PREREQUISITES : "has prerequisite"
+    SUBJECTS ||--o{ SUBJECT_PREREQUISITES : "prerequisite of"
+    DEPARTMENTS ||--o{ SUBJECTS : "owns"
+
+    LECTURERS ||--o{ CLASSES : "teaches"
+    SCHOOL_YEARS ||--o{ CLASSES : "scheduled in"
+
+    STUDENTS ||--o{ ENROLLMENTS : "registers"
+    CLASSES ||--o{ ENROLLMENTS : "enrolled in"
+    ENROLLMENTS ||--o{ ATTENDANCES : "tracked"
+    ENROLLMENTS ||--o{ GRADES : "receives"
+    ENROLLMENTS ||--o{ GRADE_APPEALS : "appeals"
+    ENROLLMENTS ||--o{ RETAKE_RECORDS : "retakes"
+    CLASSES ||--o{ ATTENDANCES : "recorded"
+
+    STUDENTS ||--o{ GPAS : "has"
+    ACADEMIC_YEARS ||--o{ GPAS : "recorded for"
+    SCHOOL_YEARS ||--o| GPAS : "semester"
+
+    ACADEMIC_YEARS ||--o{ REGISTRATION_PERIODS : "opens"
+    REGISTRATION_PERIODS ||--o{ PERIOD_CLASSES : "includes"
+    CLASSES ||--o{ PERIOD_CLASSES : "included in"
+
+    ROOMS ||--o{ TIMETABLE_SESSIONS : "hosts"
+    CLASSES ||--o{ TIMETABLE_SESSIONS : "scheduled"
+    SUBJECTS ||--o{ TIMETABLE_SESSIONS : "session"
+    LECTURERS ||--o{ TIMETABLE_SESSIONS : "conducts"
+    SCHOOL_YEARS ||--o{ TIMETABLE_SESSIONS : "学年"
+
+    SUBJECTS ||--o{ GRADE_FORMULA_CONFIG : "configured for"
+    CLASSES ||--o| EXAM_SCHEDULES : "schedules"
+    ROOMS ||--o{ EXAM_SCHEDULES : "venue"
+    EXAM_SCHEDULES ||--o{ EXAM_ASSIGNMENTS : "assigns"
+    STUDENTS ||--o{ EXAM_ASSIGNMENTS : "assigned"
+
+    USERS ||--o{ NOTIFICATIONS : "receives"
+    USERS ||--o{ NOTIFICATIONS : "recipient"
+
+    CLASSES ||--o{ STUDENT_CLASS_TRANSFERS : "transfers from"
+    CLASSES ||--o| STUDENT_CLASS_TRANSFERS : "transfers to"
+    STUDENTS ||--o{ STUDENT_CLASS_TRANSFERS : "undergoes"

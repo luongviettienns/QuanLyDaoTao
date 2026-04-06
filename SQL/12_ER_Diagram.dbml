@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  🎓 HỆ THỐNG QUẢN LÝ ĐIỂM DANH SINH VIÊN
+  ER Diagram - Dbml Format (.NET LINQ to SQL / SQLDBML)
+  Generated: 2026-04-02
+  Use with: https://dbdiagram.io/d or https://www.linqpad.net/
+-->
+<Database Name="EducationManagement" Namespace="EducationManagement.Data">
+
+  <!-- ===== CORE SYSTEM ===== -->
+
+  <Table Name="roles">
+    <Column Name="role_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="role_name" Type="System.String" DbType="NVARCHAR(100)" CanBeNull="false" />
+    <Column Name="description" Type="System.String" DbType="NVARCHAR(255)" CanBeNull="true" />
+    <Column Name="is_active" Type="System.Boolean" DbType="BIT" CanBeNull="false" Default="1" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="updated_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="updated_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="deleted_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="deleted_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+  </Table>
+
+  <Table Name="users">
+    <Column Name="user_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="username" Type="System.String" DbType="VARCHAR(50)" CanBeNull="false" />
+    <Column Name="password_hash" Type="System.String" DbType="VARCHAR(255)" CanBeNull="false" />
+    <Column Name="email" Type="System.String" DbType="VARCHAR(150)" CanBeNull="false" />
+    <Column Name="phone" Type="System.String" DbType="VARCHAR(20)" CanBeNull="true" />
+    <Column Name="full_name" Type="System.String" DbType="NVARCHAR(150)" CanBeNull="false" />
+    <Column Name="avatar_url" Type="System.String" DbType="VARCHAR(300)" CanBeNull="true" />
+    <Column Name="role_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="false" />
+    <Column Name="is_active" Type="System.Boolean" DbType="BIT" CanBeNull="false" Default="1" />
+    <Column Name="last_login_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="updated_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="updated_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="deleted_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="deleted_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Association Name="FK_Users_Roles" Member="Role" ThisKey="role_id" OtherKey="role_id" Type="Role" IsNested="true" />
+  </Table>
+
+  <Table Name="permissions">
+    <Column Name="permission_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="permission_code" Type="System.String" DbType="VARCHAR(100)" CanBeNull="false" />
+    <Column Name="permission_name" Type="System.String" DbType="NVARCHAR(200)" CanBeNull="false" />
+    <Column Name="description" Type="System.String" DbType="NVARCHAR(500)" CanBeNull="true" />
+    <Column Name="parent_code" Type="System.String" DbType="VARCHAR(100)" CanBeNull="true" />
+    <Column Name="icon" Type="System.String" DbType="VARCHAR(100)" CanBeNull="true" />
+    <Column Name="sort_order" Type="System.Int32" DbType="INT" CanBeNull="true" />
+    <Column Name="is_active" Type="System.Boolean" DbType="BIT" CanBeNull="false" Default="1" />
+    <Column Name="is_menu_only" Type="System.Boolean" DbType="BIT" CanBeNull="false" Default="0" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="updated_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="updated_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="deleted_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="deleted_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+  </Table>
+
+  <Table Name="role_permissions">
+    <Column Name="role_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="permission_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Association Name="FK_RolePermissions_Role" Member="Role" ThisKey="role_id" OtherKey="role_id" Type="Role" />
+    <Association Name="FK_RolePermissions_Permission" Member="Permission" ThisKey="permission_id" OtherKey="permission_id" Type="Permission" />
+  </Table>
+
+  <Table Name="audit_logs">
+    <Column Name="log_id" Type="System.Int64" DbType="BIGINT" IsPrimaryKey="true" IsDbGenerated="true" />
+    <Column Name="user_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="action" Type="System.String" DbType="VARCHAR(50)" CanBeNull="false" />
+    <Column Name="entity_type" Type="System.String" DbType="VARCHAR(100)" CanBeNull="false" />
+    <Column Name="entity_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="old_values" Type="System.String" DbType="NVARCHAR(MAX)" CanBeNull="true" />
+    <Column Name="new_values" Type="System.String" DbType="NVARCHAR(MAX)" CanBeNull="true" />
+    <Column Name="ip_address" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="user_agent" Type="System.String" DbType="VARCHAR(500)" CanBeNull="true" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+  </Table>
+
+  <Table Name="refresh_tokens">
+    <Column Name="id" Type="System.Guid" DbType="UNIQUEIDENTIFIER" IsPrimaryKey="true" />
+    <Column Name="user_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="false" />
+    <Column Name="token" Type="System.String" DbType="VARCHAR(500)" CanBeNull="false" />
+    <Column Name="expires_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="revoked_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="replaced_by_token" Type="System.String" DbType="VARCHAR(500)" CanBeNull="true" />
+    <Association Name="FK_RefreshTokens_Users" Member="User" ThisKey="user_id" OtherKey="user_id" Type="User" />
+  </Table>
+
+  <!-- ===== ACADEMIC STRUCTURE ===== -->
+
+  <Table Name="faculties">
+    <Column Name="faculty_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="faculty_code" Type="System.String" DbType="VARCHAR(20)" CanBeNull="false" />
+    <Column Name="faculty_name" Type="System.String" DbType="NVARCHAR(150)" CanBeNull="false" />
+    <Column Name="description" Type="System.String" DbType="NVARCHAR(500)" CanBeNull="true" />
+    <Column Name="is_active" Type="System.Boolean" DbType="BIT" CanBeNull="false" Default="1" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="updated_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="updated_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="deleted_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="deleted_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+  </Table>
+
+  <Table Name="departments">
+    <Column Name="department_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="department_code" Type="System.String" DbType="VARCHAR(20)" CanBeNull="false" />
+    <Column Name="department_name" Type="System.String" DbType="NVARCHAR(150)" CanBeNull="false" />
+    <Column Name="faculty_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="false" />
+    <Column Name="description" Type="System.String" DbType="NVARCHAR(500)" CanBeNull="true" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="updated_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="updated_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="deleted_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="deleted_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Association Name="FK_Departments_Faculties" Member="Faculty" ThisKey="faculty_id" OtherKey="faculty_id" Type="Faculty" />
+  </Table>
+
+  <Table Name="majors">
+    <Column Name="major_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="major_name" Type="System.String" DbType="NVARCHAR(150)" CanBeNull="false" />
+    <Column Name="major_code" Type="System.String" DbType="VARCHAR(20)" CanBeNull="false" />
+    <Column Name="faculty_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="false" />
+    <Column Name="description" Type="System.String" DbType="NVARCHAR(500)" CanBeNull="true" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="updated_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="updated_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="deleted_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="deleted_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Association Name="FK_Majors_Faculties" Member="Faculty" ThisKey="faculty_id" OtherKey="faculty_id" Type="Faculty" />
+  </Table>
+
+  <Table Name="academic_years">
+    <Column Name="academic_year_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="year_name" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="false" />
+    <Column Name="cohort_code" Type="System.String" DbType="NVARCHAR(10)" CanBeNull="true" />
+    <Column Name="start_year" Type="System.Int32" DbType="INT" CanBeNull="false" />
+    <Column Name="end_year" Type="System.Int32" DbType="INT" CanBeNull="false" />
+    <Column Name="duration_years" Type="System.Int32" DbType="INT" CanBeNull="false" Default="4" />
+    <Column Name="description" Type="System.String" DbType="NVARCHAR(500)" CanBeNull="true" />
+    <Column Name="is_active" Type="System.Boolean" DbType="BIT" CanBeNull="false" Default="0" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="updated_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="updated_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="deleted_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="deleted_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+  </Table>
+
+  <Table Name="school_years">
+    <Column Name="school_year_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="year_code" Type="System.String" DbType="NVARCHAR(20)" CanBeNull="false" />
+    <Column Name="year_name" Type="System.String" DbType="NVARCHAR(100)" CanBeNull="false" />
+    <Column Name="academic_year_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="start_date" Type="System.DateTime" DbType="DATE" CanBeNull="false" />
+    <Column Name="end_date" Type="System.DateTime" DbType="DATE" CanBeNull="false" />
+    <Column Name="semester1_start" Type="System.DateTime" DbType="DATE" CanBeNull="true" />
+    <Column Name="semester1_end" Type="System.DateTime" DbType="DATE" CanBeNull="true" />
+    <Column Name="semester2_start" Type="System.DateTime" DbType="DATE" CanBeNull="true" />
+    <Column Name="semester2_end" Type="System.DateTime" DbType="DATE" CanBeNull="true" />
+    <Column Name="is_active" Type="System.Boolean" DbType="BIT" CanBeNull="false" Default="0" />
+    <Column Name="current_semester" Type="System.Int32" DbType="INT" CanBeNull="true" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="updated_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="updated_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="deleted_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="deleted_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Association Name="FK_SchoolYears_AcademicYears" Member="AcademicYear" ThisKey="academic_year_id" OtherKey="academic_year_id" Type="AcademicYear" />
+  </Table>
+
+  <!-- ===== PEOPLE ===== -->
+
+  <Table Name="lecturers">
+    <Column Name="lecturer_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="lecturer_code" Type="System.String" DbType="VARCHAR(20)" CanBeNull="false" />
+    <Column Name="full_name" Type="System.String" DbType="NVARCHAR(150)" CanBeNull="false" />
+    <Column Name="email" Type="System.String" DbType="VARCHAR(150)" CanBeNull="true" />
+    <Column Name="phone" Type="System.String" DbType="VARCHAR(20)" CanBeNull="true" />
+    <Column Name="department_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="user_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="is_active" Type="System.Boolean" DbType="BIT" CanBeNull="false" Default="1" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="updated_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="updated_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="deleted_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="deleted_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Association Name="FK_Lecturers_Departments" Member="Department" ThisKey="department_id" OtherKey="department_id" Type="Department" />
+    <Association Name="FK_Lecturers_Users" Member="User" ThisKey="user_id" OtherKey="user_id" Type="User" />
+  </Table>
+
+  <Table Name="students">
+    <Column Name="student_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="student_code" Type="System.String" DbType="VARCHAR(20)" CanBeNull="false" />
+    <Column Name="full_name" Type="System.String" DbType="NVARCHAR(150)" CanBeNull="false" />
+    <Column Name="date_of_birth" Type="System.DateTime" DbType="DATE" CanBeNull="true" />
+    <Column Name="gender" Type="System.String" DbType="NVARCHAR(10)" CanBeNull="true" />
+    <Column Name="email" Type="System.String" DbType="VARCHAR(150)" CanBeNull="true" />
+    <Column Name="phone" Type="System.String" DbType="VARCHAR(20)" CanBeNull="true" />
+    <Column Name="address" Type="System.String" DbType="NVARCHAR(300)" CanBeNull="true" />
+    <Column Name="major_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="academic_year_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="advisor_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="user_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="last_warning_sent" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="is_active" Type="System.Boolean" DbType="BIT" CanBeNull="false" Default="1" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="updated_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="updated_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="deleted_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="deleted_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Association Name="FK_Students_Majors" Member="Major" ThisKey="major_id" OtherKey="major_id" Type="Major" />
+    <Association Name="FK_Students_AcademicYears" Member="AcademicYear" ThisKey="academic_year_id" OtherKey="academic_year_id" Type="AcademicYear" />
+    <Association Name="FK_Students_Users" Member="User" ThisKey="user_id" OtherKey="user_id" Type="User" />
+  </Table>
+
+  <Table Name="administrative_classes">
+    <Column Name="admin_class_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="class_code" Type="System.String" DbType="VARCHAR(20)" CanBeNull="false" />
+    <Column Name="class_name" Type="System.String" DbType="NVARCHAR(150)" CanBeNull="false" />
+    <Column Name="major_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="advisor_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="academic_year_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="cohort_year" Type="System.Int32" DbType="INT" CanBeNull="false" />
+    <Column Name="max_students" Type="System.Int32" DbType="INT" CanBeNull="true" Default="50" />
+    <Column Name="current_students" Type="System.Int32" DbType="INT" CanBeNull="true" Default="0" />
+    <Column Name="description" Type="System.String" DbType="NVARCHAR(500)" CanBeNull="true" />
+    <Column Name="is_active" Type="System.Boolean" DbType="BIT" CanBeNull="true" Default="1" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="updated_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="updated_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="deleted_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="deleted_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+  </Table>
+
+  <!-- ===== ACADEMIC CORE ===== -->
+
+  <Table Name="subjects">
+    <Column Name="subject_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="subject_code" Type="System.String" DbType="VARCHAR(20)" CanBeNull="false" />
+    <Column Name="subject_name" Type="System.String" DbType="NVARCHAR(200)" CanBeNull="false" />
+    <Column Name="credits" Type="System.Int32" DbType="INT" CanBeNull="false" />
+    <Column Name="department_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="description" Type="System.String" DbType="NVARCHAR(500)" CanBeNull="true" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="updated_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="updated_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="deleted_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="deleted_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Association Name="FK_Subjects_Departments" Member="Department" ThisKey="department_id" OtherKey="department_id" Type="Department" />
+  </Table>
+
+  <Table Name="classes">
+    <Column Name="class_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="class_code" Type="System.String" DbType="VARCHAR(20)" CanBeNull="false" />
+    <Column Name="class_name" Type="System.String" DbType="NVARCHAR(200)" CanBeNull="false" />
+    <Column Name="subject_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="false" />
+    <Column Name="lecturer_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="academic_year_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="school_year_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="semester" Type="System.Int32" DbType="INT" CanBeNull="true" />
+    <Column Name="max_students" Type="System.Int32" DbType="INT" CanBeNull="true" />
+    <Column Name="current_enrollment" Type="System.Int32" DbType="INT" CanBeNull="true" Default="0" />
+    <Column Name="schedule" Type="System.String" DbType="NVARCHAR(500)" CanBeNull="true" />
+    <Column Name="room" Type="System.String" DbType="NVARCHAR(100)" CanBeNull="true" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="updated_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="updated_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="deleted_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="deleted_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Association Name="FK_Classes_Subjects" Member="Subject" ThisKey="subject_id" OtherKey="subject_id" Type="Subject" />
+    <Association Name="FK_Classes_Lecturers" Member="Lecturer" ThisKey="lecturer_id" OtherKey="lecturer_id" Type="Lecturer" />
+    <Association Name="FK_Classes_AcademicYears" Member="AcademicYear" ThisKey="academic_year_id" OtherKey="academic_year_id" Type="AcademicYear" />
+  </Table>
+
+  <Table Name="enrollments">
+    <Column Name="enrollment_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="student_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="false" />
+    <Column Name="class_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="false" />
+    <Column Name="enrollment_date" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="status" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="deleted_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="deleted_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Association Name="FK_Enrollments_Students" Member="Student" ThisKey="student_id" OtherKey="student_id" Type="Student" />
+    <Association Name="FK_Enrollments_Classes" Member="Class" ThisKey="class_id" OtherKey="class_id" Type="Class" />
+  </Table>
+
+  <Table Name="attendances">
+    <Column Name="attendance_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="enrollment_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="false" />
+    <Column Name="class_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="false" />
+    <Column Name="attendance_date" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="status" Type="System.String" DbType="NVARCHAR(20)" CanBeNull="false" />
+    <Column Name="note" Type="System.String" DbType="NVARCHAR(500)" CanBeNull="true" />
+    <Column Name="marked_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="updated_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="updated_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="deleted_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="deleted_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Association Name="FK_Attendances_Enrollments" Member="Enrollment" ThisKey="enrollment_id" OtherKey="enrollment_id" Type="Enrollment" />
+    <Association Name="FK_Attendances_Classes" Member="Class" ThisKey="class_id" OtherKey="class_id" Type="Class" />
+  </Table>
+
+  <Table Name="grades">
+    <Column Name="grade_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="enrollment_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="false" />
+    <Column Name="midterm_score" Type="System.Decimal" DbType="DECIMAL(4,2)" CanBeNull="true" />
+    <Column Name="final_score" Type="System.Decimal" DbType="DECIMAL(4,2)" CanBeNull="true" />
+    <Column Name="total_score" Type="System.Decimal" DbType="DECIMAL(4,2)" CanBeNull="true" />
+    <Column Name="letter_grade" Type="System.String" DbType="VARCHAR(5)" CanBeNull="true" />
+    <Column Name="attendance_score" Type="System.Decimal" DbType="DECIMAL(4,2)" CanBeNull="true" />
+    <Column Name="assignment_score" Type="System.Decimal" DbType="DECIMAL(4,2)" CanBeNull="true" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="updated_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="updated_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="deleted_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="deleted_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Association Name="FK_Grades_Enrollments" Member="Enrollment" ThisKey="enrollment_id" OtherKey="enrollment_id" Type="Enrollment" />
+  </Table>
+
+  <Table Name="gpas">
+    <Column Name="gpa_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="student_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="false" />
+    <Column Name="academic_year_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="false" />
+    <Column Name="school_year_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="semester" Type="System.Int32" DbType="INT" CanBeNull="true" />
+    <Column Name="gpa10" Type="System.Decimal" DbType="DECIMAL(4,2)" CanBeNull="true" />
+    <Column Name="gpa4" Type="System.Decimal" DbType="DECIMAL(4,2)" CanBeNull="true" />
+    <Column Name="total_credits" Type="System.Int32" DbType="INT" CanBeNull="true" Default="0" />
+    <Column Name="accumulated_credits" Type="System.Int32" DbType="INT" CanBeNull="true" Default="0" />
+    <Column Name="rank_text" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" />
+    <Column Name="is_active" Type="System.Boolean" DbType="BIT" CanBeNull="false" Default="1" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="updated_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="updated_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="deleted_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="deleted_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Association Name="FK_GPAs_Students" Member="Student" ThisKey="student_id" OtherKey="student_id" Type="Student" />
+    <Association Name="FK_GPAs_AcademicYears" Member="AcademicYear" ThisKey="academic_year_id" OtherKey="academic_year_id" Type="AcademicYear" />
+  </Table>
+
+  <!-- ===== REGISTRATION ===== -->
+
+  <Table Name="registration_periods">
+    <Column Name="period_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="period_name" Type="System.String" DbType="NVARCHAR(200)" CanBeNull="false" />
+    <Column Name="academic_year_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="semester" Type="System.Int32" DbType="INT" CanBeNull="true" />
+    <Column Name="start_date" Type="System.DateTime" DbType="DATE" CanBeNull="true" />
+    <Column Name="end_date" Type="System.DateTime" DbType="DATE" CanBeNull="true" />
+    <Column Name="status" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" />
+    <Column Name="description" Type="System.String" DbType="NVARCHAR(MAX)" CanBeNull="true" />
+    <Column Name="is_active" Type="System.Boolean" DbType="BIT" CanBeNull="false" Default="1" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="updated_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="updated_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="deleted_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="deleted_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+  </Table>
+
+  <Table Name="period_classes">
+    <Column Name="period_class_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="period_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="false" />
+    <Column Name="class_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="false" />
+    <Column Name="is_active" Type="System.Boolean" DbType="BIT" CanBeNull="true" Default="1" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="updated_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="updated_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="deleted_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="deleted_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+  </Table>
+
+  <!-- ===== TIMETABLE & ROOMS ===== -->
+
+  <Table Name="rooms">
+    <Column Name="room_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="room_code" Type="System.String" DbType="VARCHAR(20)" CanBeNull="false" />
+    <Column Name="room_name" Type="System.String" DbType="NVARCHAR(100)" CanBeNull="true" />
+    <Column Name="building" Type="System.String" DbType="NVARCHAR(100)" CanBeNull="true" />
+    <Column Name="room_type" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" />
+    <Column Name="capacity" Type="System.Int32" DbType="INT" CanBeNull="true" />
+    <Column Name="facilities" Type="System.String" DbType="NVARCHAR(500)" CanBeNull="true" />
+    <Column Name="is_active" Type="System.Boolean" DbType="BIT" CanBeNull="false" Default="1" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="updated_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="updated_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="deleted_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="deleted_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+  </Table>
+
+  <Table Name="timetable_sessions">
+    <Column Name="session_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="class_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="false" />
+    <Column Name="subject_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="false" />
+    <Column Name="lecturer_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="room_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="school_year_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="week_no" Type="System.Int32" DbType="INT" CanBeNull="true" />
+    <Column Name="weekday" Type="System.Int32" DbType="INT" CanBeNull="true" />
+    <Column Name="start_time" Type="System.TimeSpan" DbType="TIME" CanBeNull="true" />
+    <Column Name="end_time" Type="System.TimeSpan" DbType="TIME" CanBeNull="true" />
+    <Column Name="period_from" Type="System.Int32" DbType="INT" CanBeNull="true" />
+    <Column Name="period_to" Type="System.Int32" DbType="INT" CanBeNull="true" />
+    <Column Name="recurrence" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" />
+    <Column Name="duration_minutes" Type="System.Int32" DbType="INT" CanBeNull="true" />
+    <Column Name="status" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" />
+    <Column Name="notes" Type="System.String" DbType="NVARCHAR(500)" CanBeNull="true" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="updated_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="updated_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="deleted_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="deleted_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Association Name="FK_TimetableSessions_Classes" Member="Class" ThisKey="class_id" OtherKey="class_id" Type="Class" />
+    <Association Name="FK_TimetableSessions_Subjects" Member="Subject" ThisKey="subject_id" OtherKey="subject_id" Type="Subject" />
+    <Association Name="FK_TimetableSessions_Rooms" Member="Room" ThisKey="room_id" OtherKey="room_id" Type="Room" />
+  </Table>
+
+  <!-- ===== GRADE MANAGEMENT ===== -->
+
+  <Table Name="grade_formula_config">
+    <Column Name="config_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="subject_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="midterm_weight" Type="System.Decimal" DbType="DECIMAL(4,2)" CanBeNull="true" />
+    <Column Name="final_weight" Type="System.Decimal" DbType="DECIMAL(4,2)" CanBeNull="true" />
+    <Column Name="attendance_weight" Type="System.Decimal" DbType="DECIMAL(4,2)" CanBeNull="true" />
+    <Column Name="assignment_weight" Type="System.Decimal" DbType="DECIMAL(4,2)" CanBeNull="true" />
+    <Column Name="lab_weight" Type="System.Decimal" DbType="DECIMAL(4,2)" CanBeNull="true" />
+    <Column Name="project_weight" Type="System.Decimal" DbType="DECIMAL(4,2)" CanBeNull="true" />
+    <Column Name="is_active" Type="System.Boolean" DbType="BIT" CanBeNull="false" Default="1" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="updated_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="updated_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="deleted_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="deleted_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+  </Table>
+
+  <Table Name="grade_appeals">
+    <Column Name="appeal_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="enrollment_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="false" />
+    <Column Name="appeal_reason" Type="System.String" DbType="NVARCHAR(MAX)" CanBeNull="true" />
+    <Column Name="admin_notes" Type="System.String" DbType="NVARCHAR(MAX)" CanBeNull="true" />
+    <Column Name="status" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" />
+    <Column Name="appeal_date" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="processed_date" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="processed_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="updated_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="updated_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="deleted_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="deleted_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Association Name="FK_GradeAppeals_Enrollments" Member="Enrollment" ThisKey="enrollment_id" OtherKey="enrollment_id" Type="Enrollment" />
+  </Table>
+
+  <Table Name="retake_records">
+    <Column Name="retake_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="enrollment_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="false" />
+    <Column Name="retake_fee" Type="System.Decimal" DbType="DECIMAL(10,2)" CanBeNull="true" />
+    <Column Name="status" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" />
+    <Column Name="exam_date" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="exam_room" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="updated_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="updated_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="deleted_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="deleted_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+  </Table>
+
+  <!-- ===== EXAM MANAGEMENT ===== -->
+
+  <Table Name="exam_schedules">
+    <Column Name="exam_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="class_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="false" />
+    <Column Name="exam_name" Type="System.String" DbType="NVARCHAR(200)" CanBeNull="false" />
+    <Column Name="exam_type" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" />
+    <Column Name="exam_date" Type="System.DateTime" DbType="DATE" CanBeNull="true" />
+    <Column Name="start_time" Type="System.TimeSpan" DbType="TIME" CanBeNull="true" />
+    <Column Name="end_time" Type="System.TimeSpan" DbType="TIME" CanBeNull="true" />
+    <Column Name="room_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="duration_minutes" Type="System.Int32" DbType="INT" CanBeNull="true" />
+    <Column Name="total_students" Type="System.Int32" DbType="INT" CanBeNull="true" />
+    <Column Name="notes" Type="System.String" DbType="NVARCHAR(500)" CanBeNull="true" />
+    <Column Name="status" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="updated_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="updated_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="deleted_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="deleted_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Association Name="FK_ExamSchedules_Classes" Member="Class" ThisKey="class_id" OtherKey="class_id" Type="Class" />
+  </Table>
+
+  <Table Name="exam_assignments">
+    <Column Name="assignment_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="exam_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="false" />
+    <Column Name="student_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="false" />
+    <Column Name="seat_number" Type="System.String" DbType="NVARCHAR(20)" CanBeNull="true" />
+    <Column Name="status" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" />
+    <Column Name="score" Type="System.Decimal" DbType="DECIMAL(4,2)" CanBeNull="true" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="updated_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="updated_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="deleted_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="deleted_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+  </Table>
+
+  <!-- ===== ADVISOR ===== -->
+
+  <Table Name="advisor_warning_config">
+    <Column Name="config_id" Type="System.Int32" DbType="INT" IsPrimaryKey="true" IsDbGenerated="true" />
+    <Column Name="attendance_threshold" Type="System.Decimal" DbType="DECIMAL(5,2)" CanBeNull="false" Default="20.0" />
+    <Column Name="gpa_threshold" Type="System.Decimal" DbType="DECIMAL(4,2)" CanBeNull="false" Default="2.0" />
+    <Column Name="email_template" Type="System.String" DbType="NVARCHAR(MAX)" CanBeNull="true" />
+    <Column Name="email_subject" Type="System.String" DbType="NVARCHAR(500)" CanBeNull="true" />
+    <Column Name="auto_send_emails" Type="System.Boolean" DbType="BIT" CanBeNull="false" Default="0" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="updated_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="updated_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+  </Table>
+
+  <!-- ===== NOTIFICATIONS ===== -->
+
+  <Table Name="notifications">
+    <Column Name="notification_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="user_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="message" Type="System.String" DbType="NVARCHAR(MAX)" CanBeNull="true" />
+    <Column Name="notification_type" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" />
+    <Column Name="recipient_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="title" Type="System.String" DbType="NVARCHAR(200)" CanBeNull="false" />
+    <Column Name="content" Type="System.String" DbType="NVARCHAR(MAX)" CanBeNull="true" />
+    <Column Name="type" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" />
+    <Column Name="is_read" Type="System.Boolean" DbType="BIT" CanBeNull="false" Default="0" />
+    <Column Name="sent_date" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="is_active" Type="System.Boolean" DbType="BIT" CanBeNull="false" Default="1" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="updated_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="updated_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="deleted_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="deleted_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+  </Table>
+
+  <!-- ===== STUDENT TRANSFERS ===== -->
+
+  <Table Name="student_class_transfers">
+    <Column Name="transfer_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="student_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="false" />
+    <Column Name="from_class_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="to_class_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="reason" Type="System.String" DbType="NVARCHAR(500)" CanBeNull="true" />
+    <Column Name="status" Type="System.String" DbType="NVARCHAR(50)" CanBeNull="true" />
+    <Column Name="transfer_date" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="approved_date" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="approved_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="updated_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="updated_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+    <Column Name="deleted_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="true" />
+    <Column Name="deleted_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+  </Table>
+
+  <Table Name="subject_prerequisites">
+    <Column Name="prerequisite_id" Type="System.String" DbType="VARCHAR(50)" IsPrimaryKey="true" />
+    <Column Name="subject_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="false" />
+    <Column Name="prerequisite_subject_id" Type="System.String" DbType="VARCHAR(50)" CanBeNull="false" />
+    <Column Name="description" Type="System.String" DbType="NVARCHAR(500)" CanBeNull="true" />
+    <Column Name="is_active" Type="System.Boolean" DbType="BIT" CanBeNull="false" Default="1" />
+    <Column Name="created_at" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+    <Column Name="created_by" Type="System.String" DbType="VARCHAR(50)" CanBeNull="true" />
+  </Table>
+
+</Database>

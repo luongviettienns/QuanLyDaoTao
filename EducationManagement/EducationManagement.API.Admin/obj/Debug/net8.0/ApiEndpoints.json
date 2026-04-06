@@ -1,0 +1,5655 @@
+[
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AcademicYearController",
+    "Method": "GetAll",
+    "RelativePath": "api-edu/academic-years",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AcademicYearController",
+    "Method": "Create",
+    "RelativePath": "api-edu/academic-years",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "EducationManagement.Common.Models.AcademicYear",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AcademicYearController",
+    "Method": "GetById",
+    "RelativePath": "api-edu/academic-years/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AcademicYearController",
+    "Method": "Update",
+    "RelativePath": "api-edu/academic-years/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "EducationManagement.Common.Models.AcademicYear",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AcademicYearController",
+    "Method": "Delete",
+    "RelativePath": "api-edu/academic-years/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AcademicYearController",
+    "Method": "GetActiveCohorts",
+    "RelativePath": "api-edu/academic-years/active-cohorts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AcademicYearController",
+    "Method": "AutoCreateCohort",
+    "RelativePath": "api-edu/academic-years/auto-create-cohort",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "startYear",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "durationYears",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AcademicYearController",
+    "Method": "AutoCreateMultipleCohorts",
+    "RelativePath": "api-edu/academic-years/auto-create-multiple-cohorts",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "startYears",
+        "Type": "System.Int32[]",
+        "IsRequired": true
+      },
+      {
+        "Name": "durationYears",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AcademicYearController",
+    "Method": "GetCurrentCohorts",
+    "RelativePath": "api-edu/academic-years/current-cohorts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.UserAdminController",
+    "Method": "GetAll",
+    "RelativePath": "api-edu/account-management",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "roleId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "isActive",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.UserAdminController",
+    "Method": "Create",
+    "RelativePath": "api-edu/account-management",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EducationManagement.Common.DTOs.User.UserCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.UserAdminController",
+    "Method": "GetById",
+    "RelativePath": "api-edu/account-management/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.UserAdminController",
+    "Method": "Update",
+    "RelativePath": "api-edu/account-management/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "EducationManagement.Common.DTOs.User.UserUpdateAdminDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.UserAdminController",
+    "Method": "Delete",
+    "RelativePath": "api-edu/account-management/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.UserAdminController",
+    "Method": "ToggleStatus",
+    "RelativePath": "api-edu/account-management/{id}/toggle-status",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AdministrativeClassController",
+    "Method": "GetAll",
+    "RelativePath": "api-edu/admin-classes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "majorId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "cohortYear",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "advisorId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AdministrativeClassController",
+    "Method": "Create",
+    "RelativePath": "api-edu/admin-classes",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "EducationManagement.Common.DTOs.AdministrativeClass.CreateAdminClassDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AdministrativeClassController",
+    "Method": "RemoveStudent",
+    "RelativePath": "api-edu/admin-classes/{classId}/students/{studentId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "studentId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AdministrativeClassController",
+    "Method": "GetById",
+    "RelativePath": "api-edu/admin-classes/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AdministrativeClassController",
+    "Method": "Update",
+    "RelativePath": "api-edu/admin-classes/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "EducationManagement.Common.DTOs.AdministrativeClass.UpdateAdminClassDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AdministrativeClassController",
+    "Method": "Delete",
+    "RelativePath": "api-edu/admin-classes/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AdministrativeClassController",
+    "Method": "AssignStudents",
+    "RelativePath": "api-edu/admin-classes/{id}/assign-students",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "EducationManagement.Common.DTOs.AdministrativeClass.AssignStudentsDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AdministrativeClassController",
+    "Method": "GetReport",
+    "RelativePath": "api-edu/admin-classes/{id}/report",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "semester",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "academicYearId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AdministrativeClassController",
+    "Method": "GetStudents",
+    "RelativePath": "api-edu/admin-classes/{id}/students",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AdministrativeClassController",
+    "Method": "TransferStudent",
+    "RelativePath": "api-edu/admin-classes/{id}/transfer-student",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "EducationManagement.Common.DTOs.AdministrativeClass.TransferStudentDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AdvisorController",
+    "Method": "GetDashboardStats",
+    "RelativePath": "api-edu/advisor/dashboard/stats",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "FacultyId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "MajorId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ClassId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "CohortYear",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Search",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "WarningStatus",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "GpaMin",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "GpaMax",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "AttendanceRateMin",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "AttendanceRateMax",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "ShowAll",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AdvisorController",
+    "Method": "GetWarningStudents",
+    "RelativePath": "api-edu/advisor/dashboard/warning-students",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "FacultyId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "MajorId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ClassId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "CohortYear",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Search",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "WarningStatus",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "GpaMin",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "GpaMax",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "AttendanceRateMin",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "AttendanceRateMax",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "ShowAll",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AdvisorController",
+    "Method": "GetStudents",
+    "RelativePath": "api-edu/advisor/students",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "FacultyId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "MajorId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ClassId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "CohortYear",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Search",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "WarningStatus",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "GpaMin",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "GpaMax",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "AttendanceRateMin",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "AttendanceRateMax",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "ShowAll",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "showAll",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AdvisorController",
+    "Method": "GetStudentDetail",
+    "RelativePath": "api-edu/advisor/students/{studentId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AdvisorController",
+    "Method": "GetStudentAttendance",
+    "RelativePath": "api-edu/advisor/students/{studentId}/attendance",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "schoolYearId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "semester",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "subjectId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AdvisorController",
+    "Method": "GetStudentGrades",
+    "RelativePath": "api-edu/advisor/students/{studentId}/grades",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "schoolYearId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "semester",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "subjectId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AdvisorController",
+    "Method": "GetStudentAttendanceProgress",
+    "RelativePath": "api-edu/advisor/students/{studentId}/progress/attendance",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "schoolYearId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AdvisorController",
+    "Method": "GetStudentGpaProgress",
+    "RelativePath": "api-edu/advisor/students/{studentId}/progress/gpa",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "schoolYearId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AdvisorController",
+    "Method": "GetStudentTrends",
+    "RelativePath": "api-edu/advisor/students/{studentId}/progress/trends",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AdvisorController",
+    "Method": "GetWarningConfig",
+    "RelativePath": "api-edu/advisor/warning-config",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AdvisorController",
+    "Method": "UpdateWarningConfig",
+    "RelativePath": "api-edu/advisor/warning-config",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "config",
+        "Type": "EducationManagement.Common.DTOs.Advisor.WarningConfigDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AdvisorController",
+    "Method": "GetAcademicWarnings",
+    "RelativePath": "api-edu/advisor/warnings/academic",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "gpaThreshold",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "FacultyId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "MajorId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ClassId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "CohortYear",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Search",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "WarningStatus",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "GpaMin",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "GpaMax",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "AttendanceRateMin",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "AttendanceRateMax",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "ShowAll",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AdvisorController",
+    "Method": "GetAttendanceWarnings",
+    "RelativePath": "api-edu/advisor/warnings/attendance",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "attendanceThreshold",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "FacultyId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "MajorId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ClassId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "CohortYear",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Search",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "WarningStatus",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "GpaMin",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "GpaMax",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "AttendanceRateMin",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "AttendanceRateMax",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "ShowAll",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AdvisorController",
+    "Method": "SendWarningEmail",
+    "RelativePath": "api-edu/advisor/warnings/send-email",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EducationManagement.Common.DTOs.Advisor.SendWarningEmailDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AttendanceController",
+    "Method": "GetAll",
+    "RelativePath": "api-edu/attendances",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AttendanceController",
+    "Method": "Create",
+    "RelativePath": "api-edu/attendances",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EducationManagement.API.Admin.Controllers.CreateAttendanceRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AttendanceController",
+    "Method": "GetById",
+    "RelativePath": "api-edu/attendances/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AttendanceController",
+    "Method": "Update",
+    "RelativePath": "api-edu/attendances/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "EducationManagement.API.Admin.Controllers.UpdateAttendanceRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AttendanceController",
+    "Method": "Delete",
+    "RelativePath": "api-edu/attendances/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "EducationManagement.API.Admin.Controllers.DeleteAttendanceRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AttendanceController",
+    "Method": "GetByClass",
+    "RelativePath": "api-edu/attendances/class/{classId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AttendanceController",
+    "Method": "GetBySchedule",
+    "RelativePath": "api-edu/attendances/schedule/{scheduleId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "scheduleId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AttendanceController",
+    "Method": "GetByStudent",
+    "RelativePath": "api-edu/attendances/student/{studentId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AuditLogController",
+    "Method": "GetAll",
+    "RelativePath": "api-edu/audit-logs",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "action",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "entityType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "fromDate",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "toDate",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AuditLogController",
+    "Method": "Create",
+    "RelativePath": "api-edu/audit-logs",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "auditLog",
+        "Type": "EducationManagement.DAL.Repositories.AuditLogDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AuditLogController",
+    "Method": "GetById",
+    "RelativePath": "api-edu/audit-logs/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AuditLogController",
+    "Method": "GetByEntity",
+    "RelativePath": "api-edu/audit-logs/entity/{entityType}/{entityId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "entityType",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "entityId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AuditLogController",
+    "Method": "GetByUser",
+    "RelativePath": "api-edu/audit-logs/user/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AuthController",
+    "Method": "ForgotPassword",
+    "RelativePath": "api-edu/auth/forgot-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EducationManagement.API.Admin.Controllers.ForgotPasswordRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api-edu/auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EducationManagement.Common.DTOs.LoginRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AuthController",
+    "Method": "Logout",
+    "RelativePath": "api-edu/auth/logout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EducationManagement.Common.DTOs.RefreshRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AuthController",
+    "Method": "GetOTPRemainingTime",
+    "RelativePath": "api-edu/auth/otp-remaining-time",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AuthController",
+    "Method": "Refresh",
+    "RelativePath": "api-edu/auth/refresh",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EducationManagement.Common.DTOs.RefreshRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AuthController",
+    "Method": "ResetPassword",
+    "RelativePath": "api-edu/auth/reset-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EducationManagement.API.Admin.Controllers.ResetPasswordRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.AuthController",
+    "Method": "VerifyOTP",
+    "RelativePath": "api-edu/auth/verify-otp",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EducationManagement.API.Admin.Controllers.VerifyOTPRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ClassController",
+    "Method": "GetAll",
+    "RelativePath": "api-edu/classes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "subjectId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "lecturerId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "academicYearId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ClassController",
+    "Method": "Create",
+    "RelativePath": "api-edu/classes",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EducationManagement.API.Admin.Controllers.CreateClassRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ClassController",
+    "Method": "GetById",
+    "RelativePath": "api-edu/classes/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ClassController",
+    "Method": "Update",
+    "RelativePath": "api-edu/classes/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "EducationManagement.API.Admin.Controllers.UpdateClassRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ClassController",
+    "Method": "Delete",
+    "RelativePath": "api-edu/classes/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ClassController",
+    "Method": "Activate",
+    "RelativePath": "api-edu/classes/{id}/activate",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ClassController",
+    "Method": "Deactivate",
+    "RelativePath": "api-edu/classes/{id}/deactivate",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ClassController",
+    "Method": "GetByLecturer",
+    "RelativePath": "api-edu/classes/lecturer/{lecturerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "lecturerId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ClassController",
+    "Method": "GetByStudent",
+    "RelativePath": "api-edu/classes/student/{studentId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.DepartmentController",
+    "Method": "GetAll",
+    "RelativePath": "api-edu/departments",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.DepartmentController",
+    "Method": "Create",
+    "RelativePath": "api-edu/departments",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "EducationManagement.Common.Models.Department",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.DepartmentController",
+    "Method": "GetById",
+    "RelativePath": "api-edu/departments/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.DepartmentController",
+    "Method": "Update",
+    "RelativePath": "api-edu/departments/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "EducationManagement.Common.Models.Department",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.DepartmentController",
+    "Method": "Delete",
+    "RelativePath": "api-edu/departments/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.DepartmentController",
+    "Method": "GetByFaculty",
+    "RelativePath": "api-edu/departments/faculty/{facultyId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "facultyId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.DepartmentController",
+    "Method": "GetLecturerStats",
+    "RelativePath": "api-edu/departments/stats/lecturers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.DepartmentController",
+    "Method": "GetSubjectStats",
+    "RelativePath": "api-edu/departments/stats/subjects",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.EmailController",
+    "Method": "SendAttendanceWarning",
+    "RelativePath": "api-edu/email/attendance-warning",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EducationManagement.API.Admin.Controllers.AttendanceWarningRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.EmailController",
+    "Method": "SendGradeNotification",
+    "RelativePath": "api-edu/email/grade-notification",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EducationManagement.API.Admin.Controllers.GradeNotificationRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.EmailController",
+    "Method": "SendEmail",
+    "RelativePath": "api-edu/email/send",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EducationManagement.API.Admin.Controllers.EmailRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.EmailController",
+    "Method": "SendBulkEmail",
+    "RelativePath": "api-edu/email/send-bulk",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EducationManagement.API.Admin.Controllers.BulkEmailRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.EnrollmentController",
+    "Method": "GetAll",
+    "RelativePath": "api-edu/enrollments",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.EnrollmentController",
+    "Method": "GetById",
+    "RelativePath": "api-edu/enrollments/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.EnrollmentController",
+    "Method": "Approve",
+    "RelativePath": "api-edu/enrollments/{id}/approve",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.EnrollmentController",
+    "Method": "Drop",
+    "RelativePath": "api-edu/enrollments/{id}/drop",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "EducationManagement.Common.DTOs.Enrollment.DropEnrollmentDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.EnrollmentController",
+    "Method": "Withdraw",
+    "RelativePath": "api-edu/enrollments/{id}/withdraw",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "EducationManagement.Common.DTOs.Enrollment.WithdrawEnrollmentDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.EnrollmentController",
+    "Method": "GetByClass",
+    "RelativePath": "api-edu/enrollments/class/{classId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.EnrollmentController",
+    "Method": "GetClassRoster",
+    "RelativePath": "api-edu/enrollments/class/{classId}/roster",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.EnrollmentController",
+    "Method": "GetPendingEnrollments",
+    "RelativePath": "api-edu/enrollments/pending",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "classId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "subjectId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "schoolYearId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "semester",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.EnrollmentController",
+    "Method": "Register",
+    "RelativePath": "api-edu/enrollments/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "EducationManagement.Common.DTOs.Enrollment.RegisterEnrollmentDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.EnrollmentController",
+    "Method": "GetByStudent",
+    "RelativePath": "api-edu/enrollments/student/{studentId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.EnrollmentController",
+    "Method": "GetAvailableClasses",
+    "RelativePath": "api-edu/enrollments/student/{studentId}/available-classes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "semester",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "academicYearId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.EnrollmentController",
+    "Method": "GetSummary",
+    "RelativePath": "api-edu/enrollments/student/{studentId}/summary",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "semester",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "academicYearId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ExamScheduleController",
+    "Method": "GetAll",
+    "RelativePath": "api-edu/exam-schedules",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "schoolYearId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "semester",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "examType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "startDate",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "classId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "subjectId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ExamScheduleController",
+    "Method": "Create",
+    "RelativePath": "api-edu/exam-schedules",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "EducationManagement.Common.DTOs.Exam.CreateExamScheduleDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ExamScheduleController",
+    "Method": "GetExamAssignments",
+    "RelativePath": "api-edu/exam-schedules/{examId}/assignments",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "examId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ExamScheduleController",
+    "Method": "EnterExamScores",
+    "RelativePath": "api-edu/exam-schedules/{examId}/scores",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "examId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "EducationManagement.Common.DTOs.Exam.EnterExamScoresDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ExamScheduleController",
+    "Method": "GetExamScores",
+    "RelativePath": "api-edu/exam-schedules/{examId}/scores",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "examId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ExamScheduleController",
+    "Method": "TransferStudent",
+    "RelativePath": "api-edu/exam-schedules/{examId}/transfer-student",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "examId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "EducationManagement.API.Admin.Controllers.TransferStudentDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ExamScheduleController",
+    "Method": "GetById",
+    "RelativePath": "api-edu/exam-schedules/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ExamScheduleController",
+    "Method": "Update",
+    "RelativePath": "api-edu/exam-schedules/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "EducationManagement.Common.DTOs.Exam.UpdateExamScheduleDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ExamScheduleController",
+    "Method": "Delete",
+    "RelativePath": "api-edu/exam-schedules/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ExamScheduleController",
+    "Method": "Cancel",
+    "RelativePath": "api-edu/exam-schedules/{id}/cancel",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ExamScheduleController",
+    "Method": "CalculateRequiredSessions",
+    "RelativePath": "api-edu/exam-schedules/calculate-sessions",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "roomId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ExamScheduleController",
+    "Method": "CheckRoomConflict",
+    "RelativePath": "api-edu/exam-schedules/check-room",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roomId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "examDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "startTime",
+        "Type": "System.TimeSpan",
+        "IsRequired": false
+      },
+      {
+        "Name": "endTime",
+        "Type": "System.TimeSpan",
+        "IsRequired": false
+      },
+      {
+        "Name": "excludeExamId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ExamScheduleController",
+    "Method": "GetByClass",
+    "RelativePath": "api-edu/exam-schedules/class/{classId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ExamScheduleController",
+    "Method": "GetClassStudents",
+    "RelativePath": "api-edu/exam-schedules/class/{classId}/students",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ExamScheduleController",
+    "Method": "GetExamsByClassAndWeek",
+    "RelativePath": "api-edu/exam-schedules/class/{classId}/week/{year}/{week}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "year",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "week",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ExamScheduleController",
+    "Method": "CreateForClass",
+    "RelativePath": "api-edu/exam-schedules/create-for-class",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "EducationManagement.Common.DTOs.Exam.CreateExamScheduleForClassDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ExamScheduleController",
+    "Method": "GetByStudent",
+    "RelativePath": "api-edu/exam-schedules/student/{studentId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "schoolYearId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "semester",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.FacultyController",
+    "Method": "GetAll",
+    "RelativePath": "api-edu/faculties",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.FacultyController",
+    "Method": "Create",
+    "RelativePath": "api-edu/faculties",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "f",
+        "Type": "EducationManagement.Common.Models.Faculty",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.FacultyController",
+    "Method": "GetById",
+    "RelativePath": "api-edu/faculties/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.FacultyController",
+    "Method": "Update",
+    "RelativePath": "api-edu/faculties/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "f",
+        "Type": "EducationManagement.Common.Models.Faculty",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.FacultyController",
+    "Method": "Delete",
+    "RelativePath": "api-edu/faculties/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.GradeAppealController",
+    "Method": "Create",
+    "RelativePath": "api-edu/grade-appeals",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "EducationManagement.Common.DTOs.GradeAppeal.GradeAppealCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.GradeAppealController",
+    "Method": "GetAll",
+    "RelativePath": "api-edu/grade-appeals",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "status",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "studentId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "lecturerId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "advisorId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "classId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.GradeAppealController",
+    "Method": "GetById",
+    "RelativePath": "api-edu/grade-appeals/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.GradeAppealController",
+    "Method": "UpdateAdvisorDecision",
+    "RelativePath": "api-edu/grade-appeals/{id}/advisor-decision",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "EducationManagement.Common.DTOs.GradeAppeal.GradeAppealAdvisorDecisionDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.GradeAppealController",
+    "Method": "Cancel",
+    "RelativePath": "api-edu/grade-appeals/{id}/cancel",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "EducationManagement.Common.DTOs.GradeAppeal.GradeAppealCancelDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.GradeAppealController",
+    "Method": "UpdateLecturerResponse",
+    "RelativePath": "api-edu/grade-appeals/{id}/lecturer-response",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "EducationManagement.Common.DTOs.GradeAppeal.GradeAppealLecturerResponseDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.GradeFormulaConfigController",
+    "Method": "Create",
+    "RelativePath": "api-edu/grade-formula-configs",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "EducationManagement.Common.DTOs.GradeFormula.GradeFormulaConfigCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.GradeFormulaConfigController",
+    "Method": "GetAll",
+    "RelativePath": "api-edu/grade-formula-configs",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "subjectId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "classId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "schoolYearId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "isDefault",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.GradeFormulaConfigController",
+    "Method": "GetById",
+    "RelativePath": "api-edu/grade-formula-configs/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.GradeFormulaConfigController",
+    "Method": "Update",
+    "RelativePath": "api-edu/grade-formula-configs/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "EducationManagement.Common.DTOs.GradeFormula.GradeFormulaConfigUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.GradeFormulaConfigController",
+    "Method": "Delete",
+    "RelativePath": "api-edu/grade-formula-configs/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "EducationManagement.API.Admin.Controllers.DeleteConfigRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.GradeFormulaConfigController",
+    "Method": "GetByScope",
+    "RelativePath": "api-edu/grade-formula-configs/resolve",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ClassId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SubjectId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolYearId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.GradeFormulaConfigController",
+    "Method": "TestConnection",
+    "RelativePath": "api-edu/grade-formula-configs/test-connection",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.GradeFormulaConfigController",
+    "Method": "TestDatabase",
+    "RelativePath": "api-edu/grade-formula-configs/test-db",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.GradeController",
+    "Method": "GetAll",
+    "RelativePath": "api-edu/grades",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.GradeController",
+    "Method": "Create",
+    "RelativePath": "api-edu/grades",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EducationManagement.API.Admin.Controllers.CreateGradeRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.GradeController",
+    "Method": "GetById",
+    "RelativePath": "api-edu/grades/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.GradeController",
+    "Method": "Update",
+    "RelativePath": "api-edu/grades/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "EducationManagement.API.Admin.Controllers.UpdateGradeRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.GradeController",
+    "Method": "Delete",
+    "RelativePath": "api-edu/grades/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "EducationManagement.API.Admin.Controllers.DeleteGradeRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.GradeController",
+    "Method": "CalculateGPA",
+    "RelativePath": "api-edu/grades/calculate/student/{studentId}/school-year/{schoolYearId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "schoolYearId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "semester",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.GradeController",
+    "Method": "GetByClass",
+    "RelativePath": "api-edu/grades/class/{classId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.GradeController",
+    "Method": "GetByStudent",
+    "RelativePath": "api-edu/grades/student/{studentId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.GradeController",
+    "Method": "GetCumulativeGPA",
+    "RelativePath": "api-edu/grades/student/{studentId}/cumulative",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.GradeController",
+    "Method": "GetByStudentSchoolYear",
+    "RelativePath": "api-edu/grades/student/{studentId}/school-year/{schoolYearId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "schoolYearId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "semester",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.GradeController",
+    "Method": "GetGradeSummary",
+    "RelativePath": "api-edu/grades/student/{studentId}/summary",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "schoolYearId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "semester",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.GradeController",
+    "Method": "GetStudentTranscript",
+    "RelativePath": "api-edu/grades/student/{studentId}/transcript",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.HealthCheckController",
+    "Method": "GetHealth",
+    "RelativePath": "api-edu/health",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.HealthCheckController",
+    "Method": "GetDetailedHealth",
+    "RelativePath": "api-edu/health/detailed",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.HealthCheckController",
+    "Method": "Ping",
+    "RelativePath": "api-edu/health/ping",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.LecturerSubjectController",
+    "Method": "GetAll",
+    "RelativePath": "api-edu/lecturer-subjects",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.LecturerSubjectController",
+    "Method": "Create",
+    "RelativePath": "api-edu/lecturer-subjects",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "EducationManagement.Common.Models.LecturerSubject",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      }
+    ]
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.LecturerSubjectController",
+    "Method": "Update",
+    "RelativePath": "api-edu/lecturer-subjects/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "EducationManagement.Common.Models.LecturerSubject",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.LecturerSubjectController",
+    "Method": "Delete",
+    "RelativePath": "api-edu/lecturer-subjects/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.LecturerSubjectController",
+    "Method": "GetAvailableLecturersForSubject",
+    "RelativePath": "api-edu/lecturer-subjects/available/{subjectId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "subjectId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.LecturerSubjectController",
+    "Method": "GetSubjectsByLecturer",
+    "RelativePath": "api-edu/lecturer-subjects/lecturer/{lecturerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "lecturerId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.LecturerSubjectController",
+    "Method": "GetLecturersBySubject",
+    "RelativePath": "api-edu/lecturer-subjects/subject/{subjectId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "subjectId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.LecturerSubjectController",
+    "Method": "Test",
+    "RelativePath": "api-edu/lecturer-subjects/test",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.LecturerController",
+    "Method": "GetAll",
+    "RelativePath": "api-edu/lecturers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.LecturerController",
+    "Method": "Create",
+    "RelativePath": "api-edu/lecturers",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "EducationManagement.Common.Models.Lecturer",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.LecturerController",
+    "Method": "GetById",
+    "RelativePath": "api-edu/lecturers/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.LecturerController",
+    "Method": "Update",
+    "RelativePath": "api-edu/lecturers/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "EducationManagement.Common.Models.Lecturer",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.LecturerController",
+    "Method": "Delete",
+    "RelativePath": "api-edu/lecturers/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.LecturerController",
+    "Method": "GetByUserId",
+    "RelativePath": "api-edu/lecturers/user/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.MajorController",
+    "Method": "GetAll",
+    "RelativePath": "api-edu/majors",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.MajorController",
+    "Method": "Create",
+    "RelativePath": "api-edu/majors",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "EducationManagement.Common.Models.Major",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.MajorController",
+    "Method": "GetById",
+    "RelativePath": "api-edu/majors/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.MajorController",
+    "Method": "Update",
+    "RelativePath": "api-edu/majors/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "EducationManagement.Common.Models.Major",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.MajorController",
+    "Method": "Delete",
+    "RelativePath": "api-edu/majors/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.MajorController",
+    "Method": "GetByFaculty",
+    "RelativePath": "api-edu/majors/by-faculty/{facultyId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "facultyId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.MenuController",
+    "Method": "GetMenuForCurrentUser",
+    "RelativePath": "api-edu/menu",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.MenuController",
+    "Method": "GetUserPermissions",
+    "RelativePath": "api-edu/menu/permissions",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.NotificationController",
+    "Method": "GetAll",
+    "RelativePath": "api-edu/notifications",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "type",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "isRead",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.NotificationController",
+    "Method": "Create",
+    "RelativePath": "api-edu/notifications",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "EducationManagement.Common.DTOs.Notification.NotificationCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.NotificationController",
+    "Method": "GetById",
+    "RelativePath": "api-edu/notifications/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.NotificationController",
+    "Method": "Delete",
+    "RelativePath": "api-edu/notifications/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.NotificationController",
+    "Method": "MarkAsRead",
+    "RelativePath": "api-edu/notifications/{id}/read",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.NotificationController",
+    "Method": "MarkAllAsRead",
+    "RelativePath": "api-edu/notifications/mark-all-read",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.NotificationController",
+    "Method": "GetMyNotifications",
+    "RelativePath": "api-edu/notifications/my-notifications",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.NotificationController",
+    "Method": "GetUnread",
+    "RelativePath": "api-edu/notifications/unread",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "limit",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.NotificationController",
+    "Method": "GetUnreadCount",
+    "RelativePath": "api-edu/notifications/unread/count",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.NotificationController",
+    "Method": "GetByUser",
+    "RelativePath": "api-edu/notifications/user/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.OrganizationController",
+    "Method": "GetDepartmentsByFaculty",
+    "RelativePath": "api-edu/organization/faculties/{facultyId}/departments",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "facultyId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.OrganizationController",
+    "Method": "GetMajorsByFaculty",
+    "RelativePath": "api-edu/organization/faculties/{facultyId}/majors",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "facultyId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.OrganizationController",
+    "Method": "GetOrganizationStructure",
+    "RelativePath": "api-edu/organization/structure",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RegistrationPeriodController",
+    "Method": "GetAll",
+    "RelativePath": "api-edu/registration-periods",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "periodType",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RegistrationPeriodController",
+    "Method": "Create",
+    "RelativePath": "api-edu/registration-periods",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "EducationManagement.Common.DTOs.RegistrationPeriod.CreatePeriodDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RegistrationPeriodController",
+    "Method": "GetById",
+    "RelativePath": "api-edu/registration-periods/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RegistrationPeriodController",
+    "Method": "Update",
+    "RelativePath": "api-edu/registration-periods/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "EducationManagement.Common.DTOs.RegistrationPeriod.UpdatePeriodDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RegistrationPeriodController",
+    "Method": "Delete",
+    "RelativePath": "api-edu/registration-periods/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RegistrationPeriodController",
+    "Method": "GetAvailableClassesForPeriod",
+    "RelativePath": "api-edu/registration-periods/{id}/available-classes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RegistrationPeriodController",
+    "Method": "GetClassesByPeriod",
+    "RelativePath": "api-edu/registration-periods/{id}/classes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RegistrationPeriodController",
+    "Method": "AddClassToPeriod",
+    "RelativePath": "api-edu/registration-periods/{id}/classes",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "input",
+        "Type": "EducationManagement.API.Admin.Controllers.AddClassToPeriodInput",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RegistrationPeriodController",
+    "Method": "Close",
+    "RelativePath": "api-edu/registration-periods/{id}/close",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RegistrationPeriodController",
+    "Method": "Open",
+    "RelativePath": "api-edu/registration-periods/{id}/open",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RegistrationPeriodController",
+    "Method": "GetActive",
+    "RelativePath": "api-edu/registration-periods/active",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RegistrationPeriodController",
+    "Method": "GetActiveForStudent",
+    "RelativePath": "api-edu/registration-periods/active/student",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RegistrationPeriodController",
+    "Method": "RemoveClassFromPeriod",
+    "RelativePath": "api-edu/registration-periods/classes/{periodClassId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "periodClassId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RegistrationPeriodController",
+    "Method": "GetRetakePeriods",
+    "RelativePath": "api-edu/registration-periods/retake",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ReportsController",
+    "Method": "GetAdminReports",
+    "RelativePath": "api-edu/reports/admin",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "schoolYearId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "semester",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "facultyId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "majorId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ReportsController",
+    "Method": "GetAdvisorReports",
+    "RelativePath": "api-edu/reports/advisor",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "schoolYearId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "semester",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "facultyId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "majorId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "classId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "cohortYear",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ReportsController",
+    "Method": "GetLecturerReports",
+    "RelativePath": "api-edu/reports/lecturer",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "schoolYearId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "semester",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "classId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ReportsController",
+    "Method": "GetStudentReports",
+    "RelativePath": "api-edu/reports/student",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "schoolYearId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "semester",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RetakeController",
+    "Method": "Create",
+    "RelativePath": "api-edu/retakes",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "EducationManagement.Common.DTOs.Retake.RetakeRecordCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RetakeController",
+    "Method": "GetAll",
+    "RelativePath": "api-edu/retakes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "classId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "status",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RetakeController",
+    "Method": "GetById",
+    "RelativePath": "api-edu/retakes/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RetakeController",
+    "Method": "UpdateStatus",
+    "RelativePath": "api-edu/retakes/{id}/status",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "EducationManagement.Common.DTOs.Retake.RetakeRecordUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RetakeController",
+    "Method": "GetByClass",
+    "RelativePath": "api-edu/retakes/class/{classId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "status",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RetakeController",
+    "Method": "RegisterForRetakeClass",
+    "RelativePath": "api-edu/retakes/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "EducationManagement.Common.DTOs.Retake.RegisterRetakeClassDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RetakeController",
+    "Method": "GetByStudent",
+    "RelativePath": "api-edu/retakes/student/{studentId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "status",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RetakeController",
+    "Method": "GetFailedSubjects",
+    "RelativePath": "api-edu/retakes/student/{studentId}/failed-subjects",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "schoolYearId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "semester",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RetakeController",
+    "Method": "GetRetakeClassesForSubject",
+    "RelativePath": "api-edu/retakes/subject/{subjectId}/retake-classes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "subjectId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "studentId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "periodId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RolePermissionController",
+    "Method": "GetPermissionsByRole",
+    "RelativePath": "api-edu/role-permissions/{roleId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roleId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RolePermissionController",
+    "Method": "AssignPermissions",
+    "RelativePath": "api-edu/role-permissions/{roleId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roleId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "permissionIds",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RolePermissionController",
+    "Method": "GetAllPermissions",
+    "RelativePath": "api-edu/role-permissions/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RolesController",
+    "Method": "GetAll",
+    "RelativePath": "api-edu/roles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RolesController",
+    "Method": "Create",
+    "RelativePath": "api-edu/roles",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EducationManagement.Common.Models.Role",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RolesController",
+    "Method": "GetById",
+    "RelativePath": "api-edu/roles/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RolesController",
+    "Method": "Update",
+    "RelativePath": "api-edu/roles/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "EducationManagement.Common.Models.Role",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RolesController",
+    "Method": "Delete",
+    "RelativePath": "api-edu/roles/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RolesController",
+    "Method": "ToggleStatus",
+    "RelativePath": "api-edu/roles/{id}/toggle-status",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RoomController",
+    "Method": "GetAll",
+    "RelativePath": "api-edu/rooms",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "isActive",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RoomController",
+    "Method": "Create",
+    "RelativePath": "api-edu/rooms",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "EducationManagement.Common.Models.Room",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RoomController",
+    "Method": "GetById",
+    "RelativePath": "api-edu/rooms/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RoomController",
+    "Method": "Update",
+    "RelativePath": "api-edu/rooms/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "EducationManagement.Common.Models.Room",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RoomController",
+    "Method": "Delete",
+    "RelativePath": "api-edu/rooms/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.RoomController",
+    "Method": "Search",
+    "RelativePath": "api-edu/rooms/search",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "isActive",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ScheduleController",
+    "Method": "GetAll",
+    "RelativePath": "api-edu/schedules",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ScheduleController",
+    "Method": "GetById",
+    "RelativePath": "api-edu/schedules/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.ScheduleController",
+    "Method": "GetByClass",
+    "RelativePath": "api-edu/schedules/class/{classId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.SchoolYearController",
+    "Method": "GetAll",
+    "RelativePath": "api-edu/school-years",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.SchoolYearController",
+    "Method": "Create",
+    "RelativePath": "api-edu/school-years",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "EducationManagement.Common.Models.SchoolYear",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.SchoolYearController",
+    "Method": "GetById",
+    "RelativePath": "api-edu/school-years/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.SchoolYearController",
+    "Method": "Update",
+    "RelativePath": "api-edu/school-years/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "EducationManagement.Common.Models.SchoolYear",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.SchoolYearController",
+    "Method": "Delete",
+    "RelativePath": "api-edu/school-years/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.SchoolYearController",
+    "Method": "Activate",
+    "RelativePath": "api-edu/school-years/{id}/activate",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "initialSemester",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.SchoolYearController",
+    "Method": "GetActive",
+    "RelativePath": "api-edu/school-years/active",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.SchoolYearController",
+    "Method": "AutoCreate",
+    "RelativePath": "api-edu/school-years/auto-create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "startYear",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "academicYearId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.SchoolYearController",
+    "Method": "AutoCreateForCohort",
+    "RelativePath": "api-edu/school-years/auto-create-for-cohort",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "academicYearId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.SchoolYearController",
+    "Method": "AutoTransitionSemester",
+    "RelativePath": "api-edu/school-years/auto-transition-semester",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.SchoolYearController",
+    "Method": "AutoTransitionToNewYear",
+    "RelativePath": "api-edu/school-years/auto-transition-year",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "newSchoolYearId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.SchoolYearController",
+    "Method": "GetCurrent",
+    "RelativePath": "api-edu/school-years/current",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.SchoolYearController",
+    "Method": "GetCurrentSemesterInfo",
+    "RelativePath": "api-edu/school-years/current-semester-info",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.SchoolYearController",
+    "Method": "ForceTransitionSemester",
+    "RelativePath": "api-edu/school-years/force-transition-semester/{targetSemester}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "targetSemester",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.SchoolYearController",
+    "Method": "IsRegistrationPeriod",
+    "RelativePath": "api-edu/school-years/is-registration-period",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.SchoolYearController",
+    "Method": "GetList",
+    "RelativePath": "api-edu/school-years/list",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.StudentsController",
+    "Method": "GetAllStudents",
+    "RelativePath": "api-edu/students",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "facultyId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "majorId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "academicYearId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.StudentsController",
+    "Method": "GetStudentById",
+    "RelativePath": "api-edu/students/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.StudentsController",
+    "Method": "AddStudent",
+    "RelativePath": "api-edu/students/addstudent",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "EducationManagement.Common.DTOs.Student.StudentCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.StudentsController",
+    "Method": "GetStudentByUserId",
+    "RelativePath": "api-edu/students/by-user-id/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.StudentsController",
+    "Method": "DeleteStudentFull",
+    "RelativePath": "api-edu/students/delete",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "EducationManagement.Common.DTOs.Student.DeleteStudentFullDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.StudentsController",
+    "Method": "DownloadImportTemplate",
+    "RelativePath": "api-edu/students/download-template",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.StudentsController",
+    "Method": "ImportStudentsBatch",
+    "RelativePath": "api-edu/students/import/batch",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "students",
+        "Type": "System.Collections.Generic.List\u00601[[EducationManagement.Common.DTOs.Student.StudentImportDto, EducationManagement.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.StudentsController",
+    "Method": "ImportFromExcel",
+    "RelativePath": "api-edu/students/import/excel",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.StudentsController",
+    "Method": "UpdateStudentFull",
+    "RelativePath": "api-edu/students/update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EducationManagement.Common.DTOs.Student.UpdateStudentFullDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.SubjectPrerequisiteController",
+    "Method": "Add",
+    "RelativePath": "api-edu/subject-prerequisites",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "EducationManagement.Common.DTOs.SubjectPrerequisite.AddPrerequisiteDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.SubjectPrerequisiteController",
+    "Method": "Delete",
+    "RelativePath": "api-edu/subject-prerequisites/{prerequisiteId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "prerequisiteId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.SubjectPrerequisiteController",
+    "Method": "GetBySubject",
+    "RelativePath": "api-edu/subject-prerequisites/by-subject/{subjectId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "subjectId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.SubjectPrerequisiteController",
+    "Method": "Check",
+    "RelativePath": "api-edu/subject-prerequisites/check",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "subjectId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.SubjectController",
+    "Method": "GetAll",
+    "RelativePath": "api-edu/subjects",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "departmentId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.SubjectController",
+    "Method": "Create",
+    "RelativePath": "api-edu/subjects",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "EducationManagement.Common.Models.Subject",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.SubjectController",
+    "Method": "GetById",
+    "RelativePath": "api-edu/subjects/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.SubjectController",
+    "Method": "Update",
+    "RelativePath": "api-edu/subjects/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "EducationManagement.Common.Models.Subject",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.SubjectController",
+    "Method": "Delete",
+    "RelativePath": "api-edu/subjects/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.SubjectController",
+    "Method": "GetByDepartment",
+    "RelativePath": "api-edu/subjects/by-department/{depId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "depId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.SubjectController",
+    "Method": "GetAllWithLecturerCount",
+    "RelativePath": "api-edu/subjects/with-lecturer-count",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.TimetableController",
+    "Method": "CheckConflicts",
+    "RelativePath": "api-edu/timetable/conflicts",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "EducationManagement.API.Admin.Controllers.TimetableConflictCheckInputDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.TimetableController",
+    "Method": "GetConflictSuggestions",
+    "RelativePath": "api-edu/timetable/conflicts/suggestions",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "input",
+        "Type": "EducationManagement.BLL.Services.TimetableConflictCheckInput",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.TimetableController",
+    "Method": "ExportLecturerTimetable",
+    "RelativePath": "api-edu/timetable/export/lecturer",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "lecturerId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "year",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "week",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "format",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.TimetableController",
+    "Method": "ExportSemesterTimetable",
+    "RelativePath": "api-edu/timetable/export/semester",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "schoolYearId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "semester",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "classId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "format",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.TimetableController",
+    "Method": "ExportStudentTimetable",
+    "RelativePath": "api-edu/timetable/export/student",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "year",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "week",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "format",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.TimetableController",
+    "Method": "GetLecturer",
+    "RelativePath": "api-edu/timetable/lecturer",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "lecturerId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "year",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "week",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.TimetableController",
+    "Method": "GetRooms",
+    "RelativePath": "api-edu/timetable/rooms",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "isActive",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.TimetableController",
+    "Method": "GetSessionsBySemester",
+    "RelativePath": "api-edu/timetable/semester",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "schoolYearId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "semester",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "classId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.TimetableController",
+    "Method": "CreateSession",
+    "RelativePath": "api-edu/timetable/session",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "input",
+        "Type": "EducationManagement.BLL.Services.TimetableCreateInput",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.TimetableController",
+    "Method": "DeleteSession",
+    "RelativePath": "api-edu/timetable/session/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.TimetableController",
+    "Method": "UpdateSession",
+    "RelativePath": "api-edu/timetable/session/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "input",
+        "Type": "EducationManagement.BLL.Services.TimetableUpdateInput",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.TimetableController",
+    "Method": "CreateSessionWithRecurrence",
+    "RelativePath": "api-edu/timetable/session/recurrence",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "input",
+        "Type": "EducationManagement.BLL.Services.TimetableCreateWithRecurrenceInput",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.TimetableController",
+    "Method": "GetAllSessions",
+    "RelativePath": "api-edu/timetable/sessions",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "year",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "week",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.TimetableController",
+    "Method": "BulkCreateSessions",
+    "RelativePath": "api-edu/timetable/sessions/bulk",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "input",
+        "Type": "EducationManagement.BLL.Services.BulkCreateSessionsInput",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.TimetableController",
+    "Method": "GetSessionsByClass",
+    "RelativePath": "api-edu/timetable/sessions/class",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "week",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.TimetableController",
+    "Method": "CopySessions",
+    "RelativePath": "api-edu/timetable/sessions/copy",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "input",
+        "Type": "EducationManagement.BLL.Services.CopySessionsInput",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.TimetableController",
+    "Method": "GetStudent",
+    "RelativePath": "api-edu/timetable/student",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "year",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "week",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.UserController",
+    "Method": "UploadAvatar",
+    "RelativePath": "api-edu/users/avatar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Avatar",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.UserController",
+    "Method": "GetCurrentUser",
+    "RelativePath": "api-edu/users/me",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.UserController",
+    "Method": "UpdateProfile",
+    "RelativePath": "api-edu/users/me",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "FullName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Phone",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Avatar",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.WarningController",
+    "Method": "CheckAndSendWarnings",
+    "RelativePath": "api-edu/warnings/check-and-send",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "threshold",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "classId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "facultyId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "majorId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.WarningController",
+    "Method": "GetWarningList",
+    "RelativePath": "api-edu/warnings/list",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "threshold",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "classId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "facultyId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "majorId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EducationManagement.API.Admin.Controllers.WarningController",
+    "Method": "SendWarningsToStudents",
+    "RelativePath": "api-edu/warnings/send-to-students",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EducationManagement.API.Admin.Controllers.SendWarningsRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
